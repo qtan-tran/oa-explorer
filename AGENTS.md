@@ -97,6 +97,15 @@ decision). The data contract is a DRAFT pending corpus-team ratification.
   remaining questions (ten-score codebook still unsupplied — numeric
   fields unpopulated). Nothing published or deployed; no real data;
   gates closed.
+- Session 7 (2026-11-08): M3 partial — offline-feasible accessibility
+  hardening, synthetic only. Tests 34–35 (16 new; 288 total, all
+  passing): computed WCAG contrast ratios, deeper structural a11y checks
+  on both the M1 site and the exchange reader site, offline link-inventory
+  baseline. Honest open list (axe-core, manual keyboard pass, screen-reader
+  spot-check, networked link check) in
+  `docs/plans/2026-11-08-m3-partial-accessibility-hardening.md`. M2 still
+  blocked on U1 (reviewed Axis 2 export + explicit owner go); M4
+  publication untouched; gates closed; no real data.
 
 ## Non-negotiable rules
 

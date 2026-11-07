@@ -3,6 +3,21 @@
 All notable changes to this repository. Format: Keep a Changelog; versioning:
 the repository follows the plan's milestones, contract semver is separate.
 
+## [0.4.3] - 2026-11-08
+### Added (M3 partial: offline-feasible accessibility hardening, synthetic only)
+- Tests 34–35 (16 new; 288 total, all passing): computed WCAG 2.2 contrast
+  ratios (≥4.5:1) for every shipped text/background pair; viewport,
+  unique ids, no placeholder/empty hrefs, no inline handlers on
+  non-interactive elements, nav aria-label, skip-link target, labelled
+  form controls incl. the JS-built search box — on the M1 site and the
+  exchange reader site; withheld-count transparency and no
+  scores/hashes on exchange pages; offline `check_links.py` inventory
+  baseline on the synthetic export.
+- `docs/plans/2026-11-08-m3-partial-accessibility-hardening.md` with the
+  honest open list: axe-core, manual keyboard pass, screen-reader
+  spot-check and networked link check NOT performed (no browser/SR/network
+  here). M2 still blocked on U1; M4 untouched.
+
 ## [0.4.2] - 2026-11-08
 ### Added (v0.3.2 exchange-contract draft: eight questions resolved, synthetic only)
 - Draft exchange contract v0.3.2 (`contract/exchange/roara_contract_v0.3.2.schema.json`,
