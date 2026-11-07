@@ -253,3 +253,4 @@ edges. Detailed per-column mapping is part of M2, reviewed per pilot record.
 
 Until ratification, this contract is a proposal; the M1 slice builds it as
 software but no real data passes through it.
+

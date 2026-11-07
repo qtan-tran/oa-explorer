@@ -1,0 +1,147 @@
+entity,field,note,status
+country,country_id,ISO 3166-1 alpha-2 (user-assigned XA/XB in synthetic data),draft_pending_OQ3
+country,corpus_status,Corpus activity status,draft_pending_OQ3
+country,data_origin,Synthetic/corpus marker (badge on site),draft_pending_OQ3
+country,review_state,Review metadata per contract §7,draft_pending_OQ3
+country,public_visible,Derived gate flag,draft_pending_OQ3
+country,approved_date,Review metadata per contract §7 (approver identity excluded; OQ3),draft_pending_OQ3
+organization,org_id,Stable ID,draft_pending_OQ3
+organization,country_id,FK,draft_pending_OQ3
+organization,org_name_raw,Name as in source inventory,draft_pending_OQ3
+organization,institution_type_raw,Original free-text type label,draft_pending_OQ3
+organization,institution_category,Controlled category,draft_pending_OQ3
+organization,tier,RPO/RFO,draft_pending_OQ3
+organization,ror_id,ROR identifier,draft_pending_OQ3
+organization,openalex_id,OpenAlex identifier,draft_pending_OQ3
+organization,has_policy,Screening result,draft_pending_OQ3
+organization,has_policy_value_state,Screening result state,draft_pending_OQ3
+organization,coding_status,v1 coding status,draft_pending_OQ3
+organization,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+organization,review_state,Review metadata,draft_pending_OQ3
+organization,public_visible,Derived gate flag,draft_pending_OQ3
+organization,approved_date,Review metadata,draft_pending_OQ3
+policy_family,family_id,Stable ID,draft_pending_OQ3
+policy_family,issuer_org_id,FK,draft_pending_OQ3
+policy_family,authority_level,Family metadata per contract §7,draft_pending_OQ3
+policy_family,instrument_function,Family metadata per contract §7,draft_pending_OQ3
+policy_family,policy_area,Family metadata per contract §7,draft_pending_OQ3
+policy_family,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+policy_family,review_state,Review metadata,draft_pending_OQ3
+policy_family,public_visible,Derived gate flag,draft_pending_OQ3
+policy_family,approved_date,Review metadata,draft_pending_OQ3
+policy_version,version_id,Stable ID,draft_pending_OQ3
+policy_version,family_id,FK,draft_pending_OQ3
+policy_version,version_label,Version label,draft_pending_OQ3
+policy_version,status,Version status,draft_pending_OQ3
+policy_version,official_languages,BCP 47 codes pipe-separated,draft_pending_OQ3
+policy_version,adopted_date_iso,Adoption date per contract §4,draft_pending_OQ3
+policy_version,adopted_date_precision,Adoption date per contract §4,draft_pending_OQ3
+policy_version,adopted_date_basis,Adoption date per contract §4,draft_pending_OQ3
+policy_version,adopted_date_confidence,Adoption date per contract §4,draft_pending_OQ3
+policy_version,adopted_date_verbatim,Adoption date per contract §4,draft_pending_OQ3
+policy_version,effective_date_iso,Effective date per contract §4,draft_pending_OQ3
+policy_version,effective_date_precision,Effective date per contract §4,draft_pending_OQ3
+policy_version,effective_date_basis,Effective date per contract §4,draft_pending_OQ3
+policy_version,effective_date_confidence,Effective date per contract §4,draft_pending_OQ3
+policy_version,effective_date_verbatim,Effective date per contract §4,draft_pending_OQ3
+policy_version,evidence_confidence,Version metadata per contract §7,draft_pending_OQ3
+policy_version,special_stratum,Comparison-safety warning; needed near charts; confirm at OQ3,draft_pending_OQ3
+policy_version,score_ms_mandate_strength,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_ms_mandate_strength_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_rl_rights_licensing,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_rl_rights_licensing_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_comp_compliance,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_comp_compliance_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_inf_infrastructure,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_inf_infrastructure_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_fund_funding,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_fund_funding_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_repo_repository,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_repo_repository_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_eval_evaluation,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_eval_evaluation_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_mon_monitoring,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_mon_monitoring_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_gov_governance,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_gov_governance_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_osb_os_breadth,Ten-dimension profile,draft_pending_OQ3
+policy_version,score_osb_os_breadth_value_state,Ten-dimension profile,draft_pending_OQ3
+policy_version,derived_family_normative_force,Derived descriptive value (never ranking),draft_pending_OQ3
+policy_version,derived_family_apparatus,Derived descriptive value (never ranking),draft_pending_OQ3
+policy_version,derived_family_gov_scope,Derived descriptive value (never ranking),draft_pending_OQ3
+policy_version,derived_composite_0_30,Derived descriptive summary (never ranking),draft_pending_OQ3
+policy_version,derived_manifestation_count,Export-only derived summary,draft_pending_OQ3
+policy_version,derived_manifestation_public_count,Export-only derived summary,draft_pending_OQ3
+policy_version,derived_provision_public_count,Export-only derived summary,draft_pending_OQ3
+policy_version,derived_source_status_summary,Export-only derived summary,draft_pending_OQ3
+policy_version,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+policy_version,review_state,Review metadata,draft_pending_OQ3
+policy_version,public_visible,Derived gate flag,draft_pending_OQ3
+policy_version,approved_date,Review metadata,draft_pending_OQ3
+manifestation,manifestation_id,Stable ID,draft_pending_OQ3
+manifestation,version_id,FK,draft_pending_OQ3
+manifestation,form,Source form,draft_pending_OQ3
+manifestation,language,BCP 47,draft_pending_OQ3
+manifestation,verbatim_title,Title as in the source,draft_pending_OQ3
+manifestation,live_url,Public links per contract §7,draft_pending_OQ3
+manifestation,live_url_value_state,Public links per contract §7,draft_pending_OQ3
+manifestation,archived_url,Public links per contract §7,draft_pending_OQ3
+manifestation,archived_url_value_state,Public links per contract §7,draft_pending_OQ3
+manifestation,archive_date,Archival snapshot date,draft_pending_OQ3
+manifestation,archive_service,Archival service name,draft_pending_OQ3
+manifestation,retrieved_date,Retrieval date,draft_pending_OQ3
+manifestation,access_status,Source status (site filter facet),draft_pending_OQ3
+manifestation,rights_status,Rights context needed to explain excerpt display,draft_pending_OQ3
+manifestation,attribution_required,Rights context needed to explain excerpt display,draft_pending_OQ3
+manifestation,excerpt_policy,Needed to explain why an excerpt may be absent,draft_pending_OQ3
+manifestation,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+manifestation,review_state,Review metadata,draft_pending_OQ3
+manifestation,public_visible,Derived gate flag,draft_pending_OQ3
+manifestation,approved_date,Review metadata,draft_pending_OQ3
+provision,provision_id,Stable ID,draft_pending_OQ3
+provision,version_id,FK,draft_pending_OQ3
+provision,manifestation_id,FK (blank in export if manifestation not public),draft_pending_OQ3
+provision,modality,Coded provision fields per contract §7,draft_pending_OQ3
+provision,actor,Coded provision fields per contract §7,draft_pending_OQ3
+provision,action,Coded provision fields per contract §7,draft_pending_OQ3
+provision,object,Coded provision fields per contract §7,draft_pending_OQ3
+provision,scope,Coded provision fields per contract §7,draft_pending_OQ3
+provision,conditions,Coded provision fields per contract §7,draft_pending_OQ3
+provision,conditions_value_state,Coded provision fields per contract §7,draft_pending_OQ3
+provision,exceptions,Coded provision fields per contract §7,draft_pending_OQ3
+provision,exceptions_value_state,Coded provision fields per contract §7,draft_pending_OQ3
+provision,excerpt_text,Approved excerpts per contract §7 (blanked when excerpt_policy forbids),draft_pending_OQ3
+provision,excerpt_language,Excerpt language (evidentiary),draft_pending_OQ3
+provision,excerpt_value_state,Excerpt state (unknown/not_applicable/measured),draft_pending_OQ3
+provision,anchor,Physical page/article/section anchor per contract §7,draft_pending_OQ3
+provision,anchor_url_fragment,Optional URL fragment,draft_pending_OQ3
+provision,review_extent,Review metadata per contract §7,draft_pending_OQ3
+provision,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+provision,review_state,Review metadata,draft_pending_OQ3
+provision,public_visible,Derived gate flag,draft_pending_OQ3
+provision,approved_date,Review metadata,draft_pending_OQ3
+version_relationship,relationship_id,Stable ID,draft_pending_OQ3
+version_relationship,from_version_id,Edge endpoint,draft_pending_OQ3
+version_relationship,to_version_id,Edge endpoint,draft_pending_OQ3
+version_relationship,type,Typed edge per contract §1,draft_pending_OQ3
+version_relationship,evidence_anchor,Edge evidence anchor,draft_pending_OQ3
+version_relationship,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+version_relationship,review_state,Review metadata,draft_pending_OQ3
+version_relationship,public_visible,Derived gate flag,draft_pending_OQ3
+version_relationship,approved_date,Review metadata,draft_pending_OQ3
+text,entity_id,Entity the text names,draft_pending_OQ3
+text,field,Field the text fills (e.g. name title),draft_pending_OQ3
+text,lang,BCP 47,draft_pending_OQ3
+text,language_status,original/translation/gloss,draft_pending_OQ3
+text,text,Text content (names titles glosses),draft_pending_OQ3
+text,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+text,review_state,Review metadata,draft_pending_OQ3
+text,public_visible,Derived gate flag,draft_pending_OQ3
+text,approved_date,Review metadata,draft_pending_OQ3
+version_function,version_id,FK,draft_pending_OQ3
+version_function,function,Function name per contract §1,draft_pending_OQ3
+version_function,payload,JSON payload; per-function shape in data dictionary; confirm at OQ7,draft_pending_OQ3
+version_function,data_origin,Synthetic/corpus marker,draft_pending_OQ3
+version_function,review_state,Review metadata,draft_pending_OQ3
+version_function,public_visible,Derived gate flag,draft_pending_OQ3
+version_function,approved_date,Review metadata,draft_pending_OQ3

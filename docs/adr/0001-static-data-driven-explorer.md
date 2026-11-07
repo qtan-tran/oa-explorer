@@ -66,3 +66,4 @@ Ten-year hosting total: ≈ €0–150 plus time. The design's position is that 
 ## Maintenance of this decision
 
 Re-verify the provider statements above whenever GitHub, Zenodo or archive.org announce changes, and at least annually (plan §8). If a limit or permission stops fitting, the documented portable-alternative path (any static host) applies; the ADR is then revised with a new date-checked section.
+

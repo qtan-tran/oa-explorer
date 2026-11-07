@@ -13,6 +13,44 @@ decision). The data contract is a DRAFT pending corpus-team ratification.
   public by the owner; plan, ADR, data contract draft, licences, AGENTS.md and
   changelog committed to main. No code, no data, no tests. Next step:
   Milestone M1 (see plan §10 for the exact next prompt).
+- Session 2 (2026-11-08): Milestone M1 implemented and complete — local
+  vertical slice on synthetic data only. Added: contract layer (9 JSON
+  Schemas, vocabularies, allowlist, legacy map; v0.1.0 DRAFT), pipeline
+  (`contract_lib.py`, validator `export_ledger.py`, allowlist exporter
+  `build_public.py` v0.2.0 with approval/permission gating, offline
+  `check_links.py`), synthetic seed corpus (64 rows, all
+  `data_origin=synthetic`, six required demo cases incl. replaced version,
+  unrecovered source, partial dates, conditional clause, two languages,
+  reviewed absence vs unknown), stdlib-only static site (ADR 0002) with
+  filters/search, record pages, relationships, evidence, chart with
+  denominator, about/limitations page, and 88 automated tests (plan §7
+  tests 1–10) — all passing, honestly scoped (no browser-level,
+  keyboard or screen-reader testing claimed; plan tests 11–14 remain
+  open for M3). M1 report, continuation note and handover doc in
+  `docs/`. Nothing pushed, published or deployed by the session; the
+  owner reviews and pushes. Next step: M2 pilot gate, blocked on U1
+  (reviewed Axis 2 export) — see
+  `docs/plans/2026-11-08-continuation-note.md` for the exact data
+  handoff expected from the corpus project.
+- Session 3 (2026-11-08): v0.2 exchange-contract vertical slice,
+  synthetic data only, stopped before real ingest. Added: draft v0.2
+  exchange schema (`contract/exchange/`, copied verbatim from the
+  corpus project's design fixture, not ratified),
+  `pipeline/exchange_lib.py` (shape validation beyond schema subset:
+  cross-references incl. same-version evidence binding and
+  component/cycle checks; duplicate source-hash rules; typed
+  date-claim semantics where a cohort threshold never infers a
+  general effective date; rights/review-gated reader views with
+  independently configurable links/downloads/excerpts),
+  `synthetic/exchange_v02.json` (10 versions / 12 manifestations /
+  8 provisions / 2 relationships, fictional XA/XB issuers; mirrors
+  the internal pilot QC workbook's structural scenarios only — the
+  QC workbook itself is never committed), `site/build_exchange.py`
+  (deterministic gated reader site, no prevalence/ranking/scores),
+  tests 20–23 (63 new; 151 total, all passing) and the slice report
+  with the v0.1→v0.2 migration note and 15 open questions for the
+  corpus thread (`docs/plans/2026-11-08-exchange-v0.2-slice.md`).
+  Nothing pushed, published or deployed; no real data touched.
 
 ## Non-negotiable rules
 

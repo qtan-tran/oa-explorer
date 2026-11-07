@@ -1,0 +1,127 @@
+vocabulary,value,definition,status
+corpus_status,active,Corpus country with data collected or in collection,active
+corpus_status,planned,Corpus country planned but not yet collected (synthetic demo: fictional country),active
+tier,RPO,Research-performing organisation (university; university of applied sciences; research institute),active
+tier,RFO,Research-funding or umbrella organisation,active
+institution_category,University,University,active
+institution_category,TU,Technical university,active
+institution_category,HAW_FH,University of applied sciences or equivalent,active
+institution_category,Medical,Medical institution,active
+institution_category,Research_institute,Research institute,active
+institution_category,Private_foundation,Private foundation,active
+institution_category,Other,Other institution category,active
+coding_status_v1,Coded,Institution's own policy identified and scored on all ten dimensions,active
+coding_status_v1,Coded_inherited,No own institutional policy; score taken from governing funder or umbrella body policy applied as a floor,active
+coding_status_v1,Unclear_to_confirm,Policy status could not be confirmed from available sources,active
+coding_status_v1,No_policy,Confirmed absence of a policy (retained as data),active
+coding_status_v1,Not_yet_coded,A policy exists but has not yet been scored,active
+has_policy_v1,Y,Policy exists,active
+has_policy_v1,N,Reviewed absence of a policy,active
+policy_area,OA,Open access only,active
+policy_area,Mixed,OA plus one or two additional elements,active
+policy_area,OS,Broad open science (three or more dimensions),active
+authority_level,institutional,Adopted and administered by the research-performing organisation itself,active
+authority_level,funder,Funding body mandate or guideline applying to grantees,active
+authority_level,national,National-level law decree or binding framework applying across a jurisdiction,active
+authority_level,institutional_within_national,Institutional policy operationalising a binding national framework,active
+instrument_function,national_assessment_subsidy_rules,National assessment or subsidy rules,active
+instrument_function,funder_grant_terms,Funder grant terms,active
+instrument_function,institutional_oa_os_policy,Institutional OA/OS policy,active
+instrument_function,repository_rules,Repository rules,active
+instrument_function,apc_eligibility,APC eligibility rules,active
+instrument_function,implementation_guidance,Implementation guidance,active
+instrument_function,announcement,Announcement,active
+version_status,in_force,Version currently in force,active
+version_status,superseded,Version replaced by a later version,active
+version_status,withdrawn,Version withdrawn by the issuer,active
+version_status,repealed,Version repealed,active
+version_status,unknown,Status not yet determined,active
+date_precision,year,Date known to the year only; date_iso is YYYY,active
+date_precision,month,Date known to the month; date_iso is YYYY-MM,active
+date_precision,day,Date known to the day; date_iso is YYYY-MM-DD,active
+date_basis,adopted,Date is the adoption date,active
+date_basis,effective,Date is the effective date,active
+date_basis,published,Date is the publication date of the source,active
+date_basis,inferred,Date inferred from context not stated as a date,active
+date_basis,unknown,Basis not yet determined,active
+date_confidence,stated,Date stated directly in the source,active
+date_confidence,inferred,Date inferred by the coder,active
+date_confidence,uncertain,Date uncertain,active
+evidence_confidence,high,High confidence in underlying source quality,active
+evidence_confidence,medium,Medium confidence in underlying source quality,active
+evidence_confidence,low,Low confidence in underlying source quality,active
+value_state,measured,Reviewed; value present (a value of 0 is a real numeric zero),active
+value_state,reviewed_absent,Reviewed; confirmed absence (presence-type questions only); value column empty,active
+value_state,not_applicable,The question does not apply to this record; value column empty,active
+value_state,unknown,Not yet reviewed or not determinable from available sources; value column empty,active
+review_state,draft,Record in active preparation; never public,active
+review_state,unreviewed,Record created but not yet reviewed; never public,active
+review_state,in_review,Record currently under review; never public,active
+review_state,reviewed,Reviewed but not yet approved for publication; never public,active
+review_state,approved_public,Reviewed and explicitly approved for the public export,active
+modality,obligation,Binding duty,active
+modality,expectation,Expectation without enforcement,active
+modality,recommendation,Recommendation,active
+modality,permission,Permission,active
+modality,prohibition,Prohibition,active
+modality,incentive,Incentive,active
+modality,exemption,Exemption,active
+modality,commitment,Commitment,active
+modality,description,Descriptive statement,active
+form,html,HTML page,active
+form,pdf,PDF document,active
+form,doc,Word or similar editable document,active
+form,print,Print-only source,active
+form,other,Other form,active
+access_status,open_public,Freely accessible without login,active
+access_status,open_login,Accessible with a free login,active
+access_status,restricted,Access restricted (membership payment or similar),active
+access_status,removed,Previously public but removed at retrieval time,active
+access_status,unrecovered,Original could not be recovered from available sources,active
+rights_status,public_domain,Public domain,active
+rights_status,open_license,Open licence,active
+rights_status,copyright_all_rights,Copyright all rights reserved,active
+rights_status,mixed,Mixed rights,active
+rights_status,unknown,Rights not yet reviewed,active
+redistribution,permitted,Redistribution permitted,active
+redistribution,not_permitted,Redistribution not permitted,active
+redistribution,unknown,Redistribution rights not yet reviewed,active
+attribution_required,yes,Attribution required,active
+attribution_required,no,Attribution not required,active
+attribution_required,unknown,Attribution requirement not yet reviewed,active
+excerpt_policy,quotation_exception,Short quotations under a documented quotation exception are permitted,active
+excerpt_policy,permitted,Excerpts permitted,active
+excerpt_policy,not_permitted,Excerpts not permitted,active
+excerpt_policy,unknown,Excerpt permission not yet reviewed,active
+relationship_type,replaces,From-version replaces to-version,active
+relationship_type,amended_by,From-version is amended by to-version,active
+relationship_type,implements,From-version implements to-version,active
+relationship_type,inherits_floor_from,From-version inherits a policy floor from to-version,active
+relationship_type,template_of,From-version is the template of to-version,active
+relationship_type,related,Other typed relation,active
+review_extent,full_text,Coded from the full policy text,active
+review_extent,selected_sections,Coded from selected sections only,active
+review_extent,summary_document,Coded from a summary document of the underlying policy,active
+language_status,original,Original language text,active
+language_status,translation,Translation,active
+language_status,gloss,Gloss (aid-to-reading; not a substitute for the original),active
+legal_relationship,civil_service_protected,Researchers hold a status with strong protection of individual research and publication autonomy,active
+legal_relationship,contractual_employee,Researchers employed under ordinary labour contracts without special protection of publication decisions,active
+legal_relationship,mixed,Organisation includes both categories,active
+legal_relationship,funder_no_direct_employment,Funder or umbrella body with no direct employment relationship to addressed researchers,active
+constitutional_freedom_protection,yes_constitutional,Constitutional protection exists and is documented to bear on research or publication freedom,active
+constitutional_freedom_protection,yes_statutory,Statutory (non-constitutional) protection exists,active
+constitutional_freedom_protection,no,No documented protection of this kind,active
+constitutional_freedom_protection,unclear,Protection may exist but has not been verified against a primary legal source,active
+funder_mandate_present,yes,A funder-level mandate exists,active
+funder_mandate_present,no,No funder-level mandate identified,active
+funder_mandate_present,unclear,Not yet established,active
+function_name,apc_eligibility,APC eligibility payload,active
+function_name,embargo_terms,Embargo terms payload,active
+function_name,rights_retention,Rights retention payload,active
+function_name,repository_rules,Repository rules payload,active
+function_name,monitoring,Monitoring payload,active
+function_name,assessment_link,Assessment link payload,active
+function_name,descriptive_notes,Descriptive notes payload (resists structuring),active
+data_origin,synthetic,Synthetic demonstration record (never real corpus data),active
+data_origin,corpus,Record derived from a pinned corpus release,active

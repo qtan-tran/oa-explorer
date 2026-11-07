@@ -1,0 +1,8 @@
+legacy_value,observed_in,documented_vocabulary_value,proposed_contract_action,needs_human_review,note
+Own,DE corpus v1,Own,none,no,Documented vocabulary value; no relationship edge implied
+Own (superseded),DE corpus v1,Own,update_group replaces chain (earlier version),yes,Observed drift; proposed reading: row is an earlier version of an update_group chain
+Own (pending),DE corpus v1,Own,review_state=unreviewed on affected fields,yes,Observed drift; proposed reading: coding still pending
+Own + umbrella,DE corpus v1,Own_plus_umbrella,inherits_floor_from edge to umbrella version,yes,Observed drift; proposed mapping to documented value
+Own (funder/umbrella),DE corpus v1,Own_plus_umbrella,inherits_floor_from edge,yes,Observed drift; proposed mapping to documented value
+Inherited (floor),DE corpus v1,Inherited,inherits_floor_from edge; scores inherited as floor,yes,Observed drift; proposed mapping to documented value
+Inherited (baseline),DE corpus v1,Inherited_baseline,inherits_floor_from edge; baseline score carried,yes,Observed drift; proposed mapping to documented value

@@ -1,0 +1,38 @@
+# --- Publication-discipline guards (plan decision D4, risk R8) ---
+# This repository is PUBLIC. The detailed research ledger and any
+# generated/review artifacts must never be committed.
+
+# Detailed research ledger: local working copies only (never in this repo)
+ledger/
+ledger.*
+
+# Generated exports (public exports are committed only after M4 approval;
+# review exports are always local)
+exports/
+
+# Built site (derived artifact; rebuild with: python site/build.py ...)
+_site/
+site_out/
+
+# Source PDFs are NEVER committed, anywhere, under any name
+*.pdf
+*.PDF
+
+# Secrets / tokens
+.env
+.env.*
+*.pem
+*.token
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*~

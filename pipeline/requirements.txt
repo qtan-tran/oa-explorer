@@ -1,0 +1,13 @@
+# pipeline/requirements.txt — pinned dependencies for the build pipeline.
+#
+# M1 decision (ADR 0002): the pipeline, site generator and tests use ONLY the
+# Python standard library. There are no third-party requirements to install.
+# A Python version pin is maintained instead:
+#
+#   Required: Python >= 3.11 (tested with 3.12; stdlib csv/json/pathlib only).
+#
+# If ADR 0001's Jinja2 fallback is ever adopted (see docs/adr/0002-*), pins
+# would be added here in exact form, e.g.:
+#   Jinja2==3.1.4
+# Tests use unittest (stdlib). They are also runnable under pytest if you
+# install it separately, but no step requires it.

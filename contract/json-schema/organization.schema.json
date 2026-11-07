@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oa-explorer.invalid/contract/0.1.0/entities/organization.json",
+  "title": "Organization row",
+  "description": "One CSV row of organizations.csv. Contract 0.1.0 (DRAFT). CSV cells are strings; types are checked after CSV parsing. x-column-order is the canonical CSV column order.",
+  "type": "object",
+  "x-entity-file": "organizations.csv",
+  "x-column-order": [
+    "org_id",
+    "country_id",
+    "org_name_raw",
+    "institution_type_raw",
+    "institution_category",
+    "tier",
+    "ror_id",
+    "openalex_id",
+    "has_policy",
+    "has_policy_value_state",
+    "coding_status",
+    "review_state",
+    "public_visible",
+    "approved_by",
+    "approved_date",
+    "withhold_reason",
+    "legacy_ref",
+    "created_by",
+    "created_date",
+    "last_reviewed_by",
+    "last_reviewed_date",
+    "change_note",
+    "data_origin"
+  ],
+  "properties": {
+    "org_id": {
+      "type": "string",
+      "pattern": "^O-[A-Z]{2}-\\d{4}$"
+    },
+    "country_id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "org_name_raw": {
+      "type": "string"
+    },
+    "institution_type_raw": {
+      "type": "string"
+    },
+    "institution_category": {
+      "type": "string",
+      "enum": [
+        "University",
+        "TU",
+        "HAW_FH",
+        "Medical",
+        "Research_institute",
+        "Private_foundation",
+        "Other"
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "RPO",
+        "RFO"
+      ]
+    },
+    "ror_id": {
+      "type": "string"
+    },
+    "openalex_id": {
+      "type": "string"
+    },
+    "has_policy": {
+      "type": "string",
+      "enum": [
+        "Y",
+        "N",
+        ""
+      ]
+    },
+    "has_policy_value_state": {
+      "type": "string",
+      "enum": [
+        "measured",
+        "reviewed_absent",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "coding_status": {
+      "type": "string",
+      "enum": [
+        "Coded",
+        "Coded_inherited",
+        "Unclear_to_confirm",
+        "No_policy",
+        "Not_yet_coded",
+        ""
+      ]
+    },
+    "review_state": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "unreviewed",
+        "in_review",
+        "reviewed",
+        "approved_public"
+      ]
+    },
+    "public_visible": {
+      "type": "boolean"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "approved_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "withhold_reason": {
+      "type": "string"
+    },
+    "legacy_ref": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "created_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "last_reviewed_by": {
+      "type": "string"
+    },
+    "last_reviewed_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "change_note": {
+      "type": "string"
+    },
+    "data_origin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "corpus"
+      ]
+    }
+  },
+  "required": [
+    "org_id",
+    "country_id",
+    "org_name_raw",
+    "institution_type_raw",
+    "institution_category",
+    "tier",
+    "has_policy_value_state",
+    "review_state",
+    "public_visible",
+    "data_origin"
+  ],
+  "additionalProperties": false
+}

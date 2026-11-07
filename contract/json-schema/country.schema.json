@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oa-explorer.invalid/contract/0.1.0/entities/country.json",
+  "title": "Country row",
+  "description": "One CSV row of countries.csv. Contract 0.1.0 (DRAFT). CSV cells are strings; types are checked after CSV parsing. x-column-order is the canonical CSV column order.",
+  "type": "object",
+  "x-entity-file": "countries.csv",
+  "x-column-order": [
+    "country_id",
+    "corpus_status",
+    "legal_relationship",
+    "legal_relationship_value_state",
+    "legal_relationship_evidence",
+    "constitutional_freedom_protection",
+    "constitutional_freedom_protection_value_state",
+    "constitutional_freedom_citation",
+    "funder_mandate_present",
+    "funder_mandate_present_value_state",
+    "funder_mandate_name",
+    "review_state",
+    "public_visible",
+    "approved_by",
+    "approved_date",
+    "withhold_reason",
+    "legacy_ref",
+    "created_by",
+    "created_date",
+    "last_reviewed_by",
+    "last_reviewed_date",
+    "change_note",
+    "data_origin"
+  ],
+  "properties": {
+    "country_id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "corpus_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "planned"
+      ]
+    },
+    "legal_relationship": {
+      "type": "string",
+      "enum": [
+        "civil_service_protected",
+        "contractual_employee",
+        "mixed",
+        "funder_no_direct_employment",
+        ""
+      ]
+    },
+    "legal_relationship_value_state": {
+      "type": "string",
+      "enum": [
+        "measured",
+        "reviewed_absent",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "legal_relationship_evidence": {
+      "type": "string"
+    },
+    "constitutional_freedom_protection": {
+      "type": "string",
+      "enum": [
+        "yes_constitutional",
+        "yes_statutory",
+        "no",
+        "unclear",
+        ""
+      ]
+    },
+    "constitutional_freedom_protection_value_state": {
+      "type": "string",
+      "enum": [
+        "measured",
+        "reviewed_absent",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "constitutional_freedom_citation": {
+      "type": "string"
+    },
+    "funder_mandate_present": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unclear",
+        ""
+      ]
+    },
+    "funder_mandate_present_value_state": {
+      "type": "string",
+      "enum": [
+        "measured",
+        "reviewed_absent",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "funder_mandate_name": {
+      "type": "string"
+    },
+    "review_state": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "unreviewed",
+        "in_review",
+        "reviewed",
+        "approved_public"
+      ]
+    },
+    "public_visible": {
+      "type": "boolean"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "approved_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "withhold_reason": {
+      "type": "string"
+    },
+    "legacy_ref": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "created_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "last_reviewed_by": {
+      "type": "string"
+    },
+    "last_reviewed_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "change_note": {
+      "type": "string"
+    },
+    "data_origin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "corpus"
+      ]
+    }
+  },
+  "required": [
+    "country_id",
+    "corpus_status",
+    "review_state",
+    "public_visible",
+    "data_origin"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,929 @@
+{
+  "schema_version": "0.2-draft",
+  "release": {
+    "release_id": "SYNTHETIC-EXCHANGE-DEMO-001",
+    "as_of": {
+      "type": "other",
+      "value": "2026-11-08",
+      "precision": "day",
+      "status": "verified"
+    },
+    "scope_note": "SYNTHETIC DEMONSTRATION EXCHANGE. Every record in this file is invented for contract testing; nothing here is approved public data and no real policy document is included.",
+    "public_release_approved": true
+  },
+  "countries": [
+    {
+      "code": "XA",
+      "label": "Republic of Arcadia",
+      "frame_description": "SYNTHETIC. Fictional state (ISO user-assigned code XA) used to exercise the exchange contract; bilingual de/en issuer universe."
+    },
+    {
+      "code": "XB",
+      "label": "Kingdom of Borealia",
+      "frame_description": "SYNTHETIC. Fictional state (ISO user-assigned code XB) used to exercise the exchange contract."
+    }
+  ],
+  "organizations": [
+    {
+      "id": "O-XA-0001",
+      "name": "Marisbury University",
+      "country_code": "XA",
+      "issuer_type": "rpo",
+      "identity_review": {
+        "state": "analyst_checked"
+      }
+    },
+    {
+      "id": "O-XA-0002",
+      "name": "Arcadia Research Council",
+      "country_code": "XA",
+      "issuer_type": "rfo"
+    },
+    {
+      "id": "O-XA-0003",
+      "name": "Arcadia Open Access Fund",
+      "country_code": "XA",
+      "issuer_type": "consortium"
+    },
+    {
+      "id": "O-XB-0001",
+      "name": "Borealia Council for Science",
+      "country_code": "XB",
+      "issuer_type": "national_government"
+    },
+    {
+      "id": "O-XB-0002",
+      "name": "Borealia Council for Health Research",
+      "country_code": "XB",
+      "issuer_type": "national_government"
+    },
+    {
+      "id": "O-XB-0003",
+      "name": "Borealia Council for Social Research",
+      "country_code": "XB",
+      "issuer_type": "national_government"
+    },
+    {
+      "id": "O-XB-0004",
+      "name": "Borealia National Research Agency",
+      "country_code": "XB",
+      "issuer_type": "national_government"
+    },
+    {
+      "id": "O-XB-0005",
+      "name": "Borealia Office for National Open Science",
+      "country_code": "XB",
+      "issuer_type": "science_academy"
+    },
+    {
+      "id": "O-XB-0006",
+      "name": "Borealia Central University",
+      "country_code": "XB",
+      "issuer_type": "rpo"
+    }
+  ],
+  "families": [
+    {
+      "id": "F-MAR-OA",
+      "issuer_id": "O-XA-0001",
+      "family_label": "Marisbury University open access policy"
+    },
+    {
+      "id": "F-ARC-GRANT",
+      "issuer_id": "O-XA-0002",
+      "family_label": "Arcadia Research Council grant terms"
+    },
+    {
+      "id": "F-BOR-TRI",
+      "issuer_id": "O-XB-0001",
+      "family_label": "Borealia Tri-Council open access policy"
+    },
+    {
+      "id": "F-BNRA-RDG",
+      "issuer_id": "O-XB-0004",
+      "family_label": "Borealia National Research Agency research data governance regulations"
+    },
+    {
+      "id": "F-BOR-NOS",
+      "issuer_id": "O-XB-0005",
+      "family_label": "Borealia national open science strategy"
+    },
+    {
+      "id": "F-BOR-REPO",
+      "issuer_id": "O-XB-0006",
+      "family_label": "Borealia Central University repository rules"
+    },
+    {
+      "id": "F-ARC-APC",
+      "issuer_id": "O-XA-0003",
+      "family_label": "Arcadia Open Access Fund APC criteria"
+    },
+    {
+      "id": "F-ARC-ANN",
+      "issuer_id": "O-XA-0002",
+      "family_label": "Arcadia Research Council announcements"
+    }
+  ],
+  "versions": [
+    {
+      "id": "V-MAR-OA-2011",
+      "family_id": "F-MAR-OA",
+      "title_original": "Open-Access-Richtlinie der Universität Marisbury",
+      "title_english": "Marisbury University Open Access Policy",
+      "language": "de",
+      "instrument_function": "institutional_oa_os",
+      "authority_status": "issued",
+      "source_status": "original_recovered",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": "2011-03-22",
+          "precision": "day",
+          "status": "issuer_attested",
+          "note": "University leadership adopted 2011-03-22; explicit header on the document",
+          "evidence_manifestation_id": "M-MAR-OA-2011-PDF",
+          "physical_anchor": "explicit header, physical p. 1"
+        },
+        {
+          "type": "effective",
+          "value": null,
+          "precision": "unknown",
+          "status": "unknown",
+          "note": "not stated in the inspected original"
+        }
+      ],
+      "review": {
+        "state": "analyst_checked",
+        "note": "selected clauses checked; currency of the version not established",
+        "extent": "selected clause and header checked"
+      },
+      "issuer_ids": [
+        "O-XA-0001"
+      ],
+      "cohorts": []
+    },
+    {
+      "id": "V-ARC-GRANT-2020",
+      "family_id": "F-ARC-GRANT",
+      "title_original": "Regelung des Arcadia Research Council zu offenem Zugang bei geförderten Projekten (2020)",
+      "title_english": "Arcadia Research Council open access regulation for funded projects (2020)",
+      "language": "de",
+      "instrument_function": "funder_grant_term",
+      "authority_status": "approved",
+      "source_status": "original_recovered",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": "2020-06-24",
+          "precision": "day",
+          "status": "issuer_attested",
+          "note": "Executive Board adopted 2020-06-24",
+          "evidence_manifestation_id": "M-ARC-GRANT-2020-PDF",
+          "physical_anchor": "resolution header, physical p. 1"
+        },
+        {
+          "type": "effective",
+          "value": null,
+          "precision": "unknown",
+          "status": "unknown",
+          "note": "not stated as a universal effective date; coverage runs through call-opening cohorts"
+        }
+      ],
+      "effective_date_interpretation": "cohort_only",
+      "scope_note": "Applies to publications from projects funded under Council calls opened on or after 2021-01-01.",
+      "review": {
+        "state": "analyst_checked",
+        "note": "selected clauses checked; full comparison eligibility pending",
+        "extent": "selected clauses checked"
+      },
+      "issuer_ids": [
+        "O-XA-0002"
+      ],
+      "cohorts": [
+        {
+          "id": "C-ARC-2021-CALLS",
+          "applies_to": "publications from projects funded under Council calls opened on or after 2021-01-01",
+          "start": {
+            "type": "cohort_start",
+            "value": "2021-01-01",
+            "precision": "day",
+            "status": "issuer_attested",
+            "note": "call-opening threshold; not an effective date"
+          },
+          "end": {
+            "type": "cohort_end",
+            "value": null,
+            "precision": "unknown",
+            "status": "not_applicable",
+            "note": "open-ended cohort"
+          },
+          "review": {
+            "state": "analyst_checked"
+          },
+          "exceptions": "explicit deviation permitted in an individual call document (Art. 10)"
+        }
+      ]
+    },
+    {
+      "id": "V-BOR-TRI-2026",
+      "family_id": "F-BOR-TRI",
+      "title_original": "Tri-Council Open Access Notice and Policy Scope (2026)",
+      "language": "en",
+      "instrument_function": "funder_grant_term",
+      "authority_status": "issued",
+      "source_status": "issuer_html_captured",
+      "dates": [
+        {
+          "type": "published",
+          "value": "2026",
+          "precision": "year",
+          "status": "issuer_attested",
+          "note": "2026 title year of the captured notice",
+          "evidence_manifestation_id": "M-BOR-TRI-2026-HTML",
+          "physical_anchor": "Notice and Policy Scope HTML sections"
+        },
+        {
+          "type": "retrieved",
+          "value": "2026-10-05",
+          "precision": "day",
+          "status": "verified",
+          "note": "captured page modified 2026-10-05; the capture is mutable"
+        },
+        {
+          "type": "effective",
+          "value": null,
+          "precision": "unknown",
+          "status": "unknown",
+          "note": "not established as a general effective date; coverage is by award cohort"
+        }
+      ],
+      "effective_date_interpretation": "cohort_only",
+      "scope_note": "Applies to agency grants and Chair awards; student and postdoctoral awards are excluded but encouraged via no-cost routes.",
+      "review": {
+        "state": "analyst_checked",
+        "note": "selected HTML sections checked; the capture is mutable",
+        "extent": "selected HTML sections checked"
+      },
+      "issuer_ids": [
+        "O-XB-0001",
+        "O-XB-0002",
+        "O-XB-0003"
+      ],
+      "cohorts": [
+        {
+          "id": "C-BOR-TRI-LEGACY",
+          "applies_to": "agency grants and Chair awards awarded from 2015-05-01 through 2026-12-31",
+          "start": {
+            "type": "cohort_start",
+            "value": "2015-05-01",
+            "precision": "day",
+            "status": "issuer_attested",
+            "evidence_manifestation_id": "M-BOR-TRI-2026-HTML",
+            "physical_anchor": "Policy Scope section"
+          },
+          "end": {
+            "type": "cohort_end",
+            "value": "2026-12-31",
+            "precision": "day",
+            "status": "issuer_attested",
+            "physical_anchor": "Policy Scope section"
+          },
+          "review": {
+            "state": "analyst_checked"
+          }
+        },
+        {
+          "id": "C-BOR-TRI-2027",
+          "applies_to": "agency grants and Chair awards awarded on or after 2027-01-01",
+          "start": {
+            "type": "cohort_start",
+            "value": "2027-01-01",
+            "precision": "day",
+            "status": "issuer_attested",
+            "physical_anchor": "Policy Scope section"
+          },
+          "end": {
+            "type": "cohort_end",
+            "value": null,
+            "precision": "unknown",
+            "status": "not_applicable",
+            "note": "open-ended cohort"
+          },
+          "review": {
+            "state": "analyst_checked"
+          }
+        }
+      ]
+    },
+    {
+      "id": "V-BOR-TRI-2015",
+      "family_id": "F-BOR-TRI",
+      "title_original": "Tri-Council Open Access Policy (2015, attested but not recovered)",
+      "language": "en",
+      "instrument_function": "funder_grant_term",
+      "authority_status": "unverified",
+      "source_status": "attested_unrecovered",
+      "dates": [],
+      "review": {
+        "state": "unreviewed",
+        "note": "prior version attested in the 2026 notice; original not yet recovered"
+      },
+      "issuer_ids": [
+        "O-XB-0001",
+        "O-XB-0002",
+        "O-XB-0003"
+      ],
+      "cohorts": []
+    },
+    {
+      "id": "V-BOR-BNRA-012-2023",
+      "family_id": "F-BNRA-RDG",
+      "title_original": "Peraturan Badan Riset Borealia Nomor 012 Tahun 2023 tentang Tata Kelola Data Riset",
+      "title_english": "Borealia National Research Agency Regulation No. 12/2023 on Research Data Governance",
+      "language": "id",
+      "instrument_function": "research_data_governance",
+      "authority_status": "issued",
+      "source_status": "original_recovered",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": "2023-10-09",
+          "precision": "day",
+          "status": "issuer_attested",
+          "note": "Adopted 2023-10-09",
+          "evidence_manifestation_id": "M-BOR-BNRA-2023-PDF",
+          "physical_anchor": "header, physical p. 1"
+        },
+        {
+          "type": "promulgated",
+          "value": "2023-10-17",
+          "precision": "day",
+          "status": "verified",
+          "note": "promulgated 2023-10-17; Art. 26 provides the articles are in force on promulgation",
+          "evidence_manifestation_id": "M-BOR-BNRA-2023-PDF",
+          "physical_anchor": "Art. 26, physical p. 11"
+        },
+        {
+          "type": "effective",
+          "value": null,
+          "precision": "unknown",
+          "status": "unknown",
+          "note": "in force on promulgation per Art. 26"
+        }
+      ],
+      "effective_date_interpretation": "promulgation_linked",
+      "scope_note": "Art. 25 repeals Regulation 18/2022.",
+      "review": {
+        "state": "analyst_checked",
+        "note": "selected articles checked; independent review of the translation pending",
+        "extent": "selected articles checked"
+      },
+      "issuer_ids": [
+        "O-XB-0004"
+      ],
+      "cohorts": []
+    },
+    {
+      "id": "V-BNRA-018-2022",
+      "family_id": "F-BNRA-RDG",
+      "title_original": "Regulation 18/2022 (repealed, not recovered)",
+      "language": "id",
+      "instrument_function": "research_data_governance",
+      "authority_status": "unverified",
+      "source_status": "attested_unrecovered",
+      "dates": [],
+      "review": {
+        "state": "unreviewed",
+        "note": "repealed by Art. 25 of Regulation 12/2023; original not recovered"
+      },
+      "issuer_ids": [
+        "O-XB-0004"
+      ],
+      "cohorts": []
+    },
+    {
+      "id": "V-BOR-NOS-2022",
+      "family_id": "F-BOR-NOS",
+      "title_original": "Estrategia Nacional de Ciencia Abierta de Borealia (2022)",
+      "title_english": "Borealia National Open Science Strategy (2022)",
+      "language": "es",
+      "instrument_function": "national_os_strategy",
+      "authority_status": "approved",
+      "source_status": "original_recovered",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": "2022-08-03",
+          "precision": "day",
+          "status": "issuer_attested",
+          "note": "2022-08-03 recorded in the detailed ledger; the separate signed resolution still needs verification",
+          "evidence_manifestation_id": "M-BOR-NOS-RES",
+          "physical_anchor": "physical p. 56; printed p. 53"
+        },
+        {
+          "type": "approved",
+          "value": null,
+          "precision": "unknown",
+          "status": "unreviewed",
+          "note": "signed resolution attesting approval is under verification"
+        }
+      ],
+      "effective_date_interpretation": "unknown",
+      "scope_note": "Conditional national openness target for publicly funded publications where possible; not a blanket individual deposit rule.",
+      "review": {
+        "state": "provisionally_reviewed",
+        "note": "selected Spanish target clause checked; resolution/annex relation pending",
+        "extent": "selected clause checked"
+      },
+      "issuer_ids": [
+        "O-XB-0005"
+      ],
+      "cohorts": [
+        {
+          "id": "C-BOR-NOS-TARGET",
+          "applies_to": "publicly funded publications covered by the national openness target",
+          "start": {
+            "type": "cohort_start",
+            "value": "2022",
+            "precision": "year",
+            "status": "inferred",
+            "note": "target period begins with the strategy"
+          },
+          "end": {
+            "type": "cohort_end",
+            "value": "2027",
+            "precision": "year",
+            "status": "issuer_attested",
+            "note": "target horizon stated by the issuer"
+          },
+          "review": {
+            "state": "provisionally_reviewed"
+          }
+        }
+      ]
+    },
+    {
+      "id": "V-BOR-REPO-2016",
+      "family_id": "F-BOR-REPO",
+      "title_original": "Borealia Central University Repository Deposit Rules (2016)",
+      "language": "en",
+      "instrument_function": "repository_operation",
+      "authority_status": "issued",
+      "source_status": "original_recovered",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": "2016-02-01",
+          "precision": "day",
+          "status": "issuer_attested",
+          "evidence_manifestation_id": "M-BOR-REPO-2016-PDF",
+          "physical_anchor": "§ 1, physical p. 1"
+        },
+        {
+          "type": "effective",
+          "value": "2016-03-01",
+          "precision": "day",
+          "status": "verified",
+          "note": "the rules state they take effect on 2016-03-01",
+          "evidence_manifestation_id": "M-BOR-REPO-2016-PDF",
+          "physical_anchor": "§ 8, physical p. 4"
+        }
+      ],
+      "effective_date_interpretation": "explicit",
+      "review": {
+        "state": "analyst_checked",
+        "extent": "full document checked"
+      },
+      "issuer_ids": [
+        "O-XB-0006"
+      ],
+      "cohorts": []
+    },
+    {
+      "id": "V-ARC-APC-2021",
+      "family_id": "F-ARC-APC",
+      "title_original": "Kriterien der Arcadia Open Access Fund für Publikationskosten (2021)",
+      "title_english": "Arcadia Open Access Fund APC criteria (2021)",
+      "language": "de",
+      "instrument_function": "apc_funding_criteria",
+      "authority_status": "unverified",
+      "source_status": "unreviewed",
+      "dates": [],
+      "review": {
+        "state": "unreviewed"
+      },
+      "issuer_ids": [
+        "O-XA-0003"
+      ],
+      "cohorts": []
+    },
+    {
+      "id": "V-ARC-ANN-2020",
+      "family_id": "F-ARC-ANN",
+      "title_original": "Bekanntmachung: Offener Zugang bei Arcadia Research Council (2020)",
+      "title_english": "Announcement: Open access at the Arcadia Research Council (2020)",
+      "language": "en",
+      "instrument_function": "announcement",
+      "authority_status": "announcement_attested",
+      "source_status": "issuer_html_captured",
+      "dates": [
+        {
+          "type": "published",
+          "value": "2020-11-02",
+          "precision": "day",
+          "status": "issuer_attested",
+          "note": "announcement published 2020-11-02",
+          "evidence_manifestation_id": "M-ARC-ANN-2020-HTML",
+          "physical_anchor": "announcement page heading"
+        },
+        {
+          "type": "retrieved",
+          "value": "2026-10-05",
+          "precision": "day",
+          "status": "verified",
+          "note": "captured page modified 2026-10-05; announcement pages are mutable"
+        }
+      ],
+      "review": {
+        "state": "analyst_checked",
+        "note": "announcement attested by the issuer; the page capture is mutable",
+        "extent": "heading and scope line checked"
+      },
+      "issuer_ids": [
+        "O-XA-0002"
+      ],
+      "cohorts": []
+    }
+  ],
+  "manifestations": [
+    {
+      "id": "M-MAR-OA-2011-PDF",
+      "version_id": "V-MAR-OA-2011",
+      "role": "controlling_original",
+      "format": "pdf",
+      "language": "de",
+      "source_url": "https://example.org/marisbury/oa-policy-2011.pdf",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "physical_pages": 1,
+      "rights_status": "link_only_approved",
+      "review": {
+        "state": "analyst_checked"
+      }
+    },
+    {
+      "id": "M-ARC-GRANT-2020-PDF",
+      "version_id": "V-ARC-GRANT-2020",
+      "role": "controlling_original",
+      "format": "pdf",
+      "language": "de",
+      "source_url": "https://example.org/arc/rat-oa-2020.pdf",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "physical_pages": 4,
+      "rights_status": "link_only_approved",
+      "review": {
+        "state": "analyst_checked"
+      }
+    },
+    {
+      "id": "M-BOR-TRI-2026-HTML",
+      "version_id": "V-BOR-TRI-2026",
+      "role": "issuer_html_capture",
+      "format": "html",
+      "language": "en",
+      "source_url": "https://example.org/borealia/tri-council-notice-2026",
+      "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "retrieved_at": "2026-10-05",
+      "rights_status": "link_only_approved",
+      "review": {
+        "state": "analyst_checked",
+        "note": "capture of a mutable issuer page"
+      }
+    },
+    {
+      "id": "M-BOR-TRI-2015-LEAD",
+      "version_id": "V-BOR-TRI-2015",
+      "role": "unrecovered_lead",
+      "format": "unknown",
+      "language": "en",
+      "source_url": null,
+      "sha256": null,
+      "rights_status": "unreviewed",
+      "review": {
+        "state": "unreviewed",
+        "note": "lead only; original not recovered"
+      }
+    },
+    {
+      "id": "M-BOR-BNRA-2023-PDF",
+      "version_id": "V-BOR-BNRA-012-2023",
+      "role": "controlling_original",
+      "format": "pdf",
+      "language": "id",
+      "source_url": "https://example.org/bnra/regulation-012-2023.pdf",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "physical_pages": 11,
+      "rights_status": "public_redistribution_approved",
+      "review": {
+        "state": "analyst_checked"
+      }
+    },
+    {
+      "id": "M-BOR-BNRA-2023-MIRROR",
+      "version_id": "V-BOR-BNRA-012-2023",
+      "role": "mirror",
+      "format": "pdf",
+      "language": "id",
+      "source_url": "https://example-archive.org/bnra/regulation-012-2023.pdf",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "physical_pages": 11,
+      "rights_status": "link_only_approved",
+      "review": {
+        "state": "analyst_checked",
+        "note": "archive mirror of the controlling original"
+      }
+    },
+    {
+      "id": "M-BNRA-018-2022-LEAD",
+      "version_id": null,
+      "role": "unrecovered_lead",
+      "format": "unknown",
+      "language": "id",
+      "source_url": null,
+      "sha256": null,
+      "rights_status": "unreviewed",
+      "review": {
+        "state": "unreviewed"
+      }
+    },
+    {
+      "id": "M-BOR-NOS-RES",
+      "version_id": "V-BOR-NOS-2022",
+      "role": "controlling_original",
+      "format": "pdf",
+      "language": "es",
+      "source_url": null,
+      "sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+      "physical_pages": 85,
+      "rights_status": "internal_only",
+      "review": {
+        "state": "provisionally_reviewed",
+        "note": "signed resolution attesting approval is under verification"
+      },
+      "authority_evidence": "signed resolution attesting approval (under verification)"
+    },
+    {
+      "id": "M-BOR-NOS-ANNEX",
+      "version_id": "V-BOR-NOS-2022",
+      "role": "ancillary",
+      "format": "pdf",
+      "language": "es",
+      "source_url": null,
+      "sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+      "physical_pages": 30,
+      "rights_status": "internal_only",
+      "review": {
+        "state": "provisionally_reviewed"
+      },
+      "component_of_manifestation_id": "M-BOR-NOS-RES"
+    },
+    {
+      "id": "M-BOR-REPO-2016-PDF",
+      "version_id": "V-BOR-REPO-2016",
+      "role": "controlling_original",
+      "format": "pdf",
+      "language": "en",
+      "source_url": "https://example.org/bcu/repository-rules-2016.pdf",
+      "sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+      "physical_pages": 7,
+      "rights_status": "link_only_approved",
+      "review": {
+        "state": "analyst_checked"
+      }
+    },
+    {
+      "id": "M-ARC-APC-2021-PDF",
+      "version_id": "V-ARC-APC-2021",
+      "role": "controlling_original",
+      "format": "pdf",
+      "language": "de",
+      "source_url": "https://example.org/arcafund/apc-criteria-2021.pdf",
+      "sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+      "rights_status": "unreviewed",
+      "review": {
+        "state": "unreviewed"
+      }
+    },
+    {
+      "id": "M-ARC-ANN-2020-HTML",
+      "version_id": "V-ARC-ANN-2020",
+      "role": "issuer_html_capture",
+      "format": "html",
+      "language": "en",
+      "source_url": "https://example.org/arc/announcement-2020-11-02",
+      "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+      "retrieved_at": "2026-10-05",
+      "rights_status": "link_only_approved",
+      "review": {
+        "state": "analyst_checked"
+      }
+    }
+  ],
+  "provisions": [
+    {
+      "id": "P-MAR-2011-1",
+      "version_id": "V-MAR-OA-2011",
+      "manifestation_id": "M-MAR-OA-2011-PDF",
+      "original_excerpt": "Die Universität Marisbury ermutigt Forschende, sich Rechte an einer digitalen Kopie nach Ablauf etwaiger Sperrfristen vorzubehalten.",
+      "translation_english": "Marisbury University encourages researchers to reserve rights for a digital copy after possible waiting periods.",
+      "anchor": "§ 2, physical p. 1",
+      "actor": "researchers of the university",
+      "action": "are encouraged to reserve rights",
+      "object": "a digital copy of their publication",
+      "scope": "university researchers",
+      "modality": "encouraged (non-binding)",
+      "condition": "after possible waiting periods",
+      "exception": null,
+      "code_status": "reviewed_presence",
+      "review": {
+        "state": "analyst_checked"
+      },
+      "excerpt_rights_status": "approved_for_public_export",
+      "function_relation": "policy_clause"
+    },
+    {
+      "id": "P-MAR-2011-2",
+      "version_id": "V-MAR-OA-2011",
+      "manifestation_id": "M-MAR-OA-2011-PDF",
+      "original_excerpt": "Die Universität unterstützt separat die Übernahme von Publikationskosten für Open-Access-Zeitschriften.",
+      "translation_english": "The university separately supports the coverage of publication costs for open access journals.",
+      "anchor": "§ 3, physical p. 1",
+      "actor": "the university",
+      "action": "supports the coverage of publication costs",
+      "object": "open access journal publications",
+      "scope": null,
+      "modality": "may (support offer)",
+      "condition": null,
+      "exception": null,
+      "code_status": "reviewed_presence",
+      "review": {
+        "state": "analyst_checked"
+      },
+      "excerpt_rights_status": "internal_only",
+      "function_relation": "apc_operational_eligibility"
+    },
+    {
+      "id": "P-ARC-GRANT-2020-1",
+      "version_id": "V-ARC-GRANT-2020",
+      "manifestation_id": "M-ARC-GRANT-2020-PDF",
+      "original_excerpt": "Geförderte wissenschaftliche Artikel müssen unmittelbar offen zugänglich gemacht werden; eine Hinterlegung im Repositorium ist Weg 3.2.",
+      "translation_english": "Funded scientific articles must be made immediately openly accessible; repository deposit is route 3.2.",
+      "anchor": "Art. 2, physical p. 2",
+      "actor": "funded authors",
+      "action": "must make immediately openly accessible",
+      "object": "the funded scientific article",
+      "scope": "publications from projects funded under Council calls opened on or after 2021-01-01",
+      "modality": "must",
+      "condition": "the project is funded under a call opened on or after 2021-01-01",
+      "exception": "explicit deviation permitted in the individual call document (Art. 10)",
+      "code_status": "reviewed_presence",
+      "review": {
+        "state": "analyst_checked"
+      },
+      "excerpt_rights_status": "approved_for_public_export",
+      "function_relation": "policy_clause"
+    },
+    {
+      "id": "P-BOR-TRI-2026-1",
+      "version_id": "V-BOR-TRI-2026",
+      "manifestation_id": "M-BOR-TRI-2026-HTML",
+      "original_excerpt": "Agencies apply this policy to peer-reviewed articles from funded grants and Chair awards. Student and postdoctoral awards are excluded but encouraged via no-cost routes.",
+      "translation_english": null,
+      "anchor": "Notice and Policy Scope HTML sections",
+      "actor": "the agencies",
+      "action": "apply the policy",
+      "object": "peer-reviewed articles from funded grants and Chair awards",
+      "scope": "agency grants and Chair awards",
+      "modality": "must",
+      "condition": "the award is made on or after 2027-01-01",
+      "exception": "student and postdoctoral awards excluded but encouraged via no-cost routes",
+      "code_status": "reviewed_presence",
+      "review": {
+        "state": "analyst_checked",
+        "note": "excerpt from a mutable HTML capture"
+      },
+      "excerpt_rights_status": "approved_for_public_export",
+      "function_relation": "policy_clause"
+    },
+    {
+      "id": "P-BOR-BNRA-2023-1",
+      "version_id": "V-BOR-BNRA-012-2023",
+      "manifestation_id": "M-BOR-BNRA-2023-PDF",
+      "original_excerpt": "Pemilik data dan output riset wajib menyimpan dan memeliharanya dalam sistem institusi dengan cadangan RIN.",
+      "translation_english": "Owners of research data and outputs must deposit and retain them in the institutional system with RIN backup.",
+      "anchor": "Art. 26, physical p. 11",
+      "actor": "owners of research data and outputs",
+      "action": "must deposit and retain",
+      "object": "research data and outputs",
+      "scope": "BNRA-funded research activity",
+      "modality": "must",
+      "condition": "the institutional system requires RIN backup",
+      "exception": "one owner may act on behalf of all owners by agreement",
+      "code_status": "reviewed_presence",
+      "review": {
+        "state": "analyst_checked",
+        "note": "independent review of the translation pending"
+      },
+      "excerpt_rights_status": "approved_for_public_export",
+      "function_relation": "policy_clause"
+    },
+    {
+      "id": "P-BOR-BNRA-2023-2",
+      "version_id": "V-BOR-BNRA-012-2023",
+      "manifestation_id": "M-BOR-BNRA-2023-PDF",
+      "original_excerpt": "Salah satu pemilik dapat bertindak untuk semua pemilik berdasarkan kesepakatan tertulis.",
+      "translation_english": "One of the owners may act for all owners on the basis of a written agreement.",
+      "anchor": "Art. 26, physical p. 10",
+      "actor": "one of the owners",
+      "action": "may act on behalf of all owners",
+      "object": "deposit and retention obligations",
+      "scope": null,
+      "modality": "may",
+      "condition": "written agreement of the owners",
+      "exception": null,
+      "code_status": "reviewed_presence",
+      "review": {
+        "state": "analyst_checked"
+      },
+      "excerpt_rights_status": "approved_for_public_export",
+      "function_relation": "policy_clause"
+    },
+    {
+      "id": "P-BOR-NOS-2022-1",
+      "version_id": "V-BOR-NOS-2022",
+      "manifestation_id": "M-BOR-NOS-RES",
+      "original_excerpt": "Los investigadores financiados con fondos públicos deben procurar, cuando sea posible, el acceso abierto de sus publicaciones.",
+      "translation_english": "Publicly funded researchers should seek open access for their publications where possible.",
+      "anchor": "physical p. 56; printed p. 53",
+      "actor": "publicly funded researchers",
+      "action": "should seek open access for",
+      "object": "their publications",
+      "scope": "publications covered by the national openness target",
+      "modality": "should (conditional target)",
+      "condition": "where possible",
+      "exception": null,
+      "code_status": "provisional",
+      "review": {
+        "state": "provisionally_reviewed",
+        "note": "selected Spanish target clause checked"
+      },
+      "excerpt_rights_status": "internal_only",
+      "function_relation": "policy_clause"
+    },
+    {
+      "id": "P-BOR-REPO-2016-1",
+      "version_id": "V-BOR-REPO-2016",
+      "manifestation_id": "M-BOR-REPO-2016-PDF",
+      "original_excerpt": "Authors must deposit an appropriate peer-reviewed version of the article into the institutional repository.",
+      "translation_english": null,
+      "anchor": "§ 4, physical p. 2",
+      "actor": "authors",
+      "action": "must deposit",
+      "object": "an appropriate peer-reviewed version",
+      "scope": "articles by university affiliates",
+      "modality": "must",
+      "condition": null,
+      "exception": "a publisher agreement may limit access and licence",
+      "code_status": "reviewed_presence",
+      "review": {
+        "state": "analyst_checked"
+      },
+      "excerpt_rights_status": "approved_for_public_export",
+      "function_relation": "policy_clause"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "R-TRI-2026-01",
+      "earlier_version_id": "V-BOR-TRI-2015",
+      "later_version_id": "V-BOR-TRI-2026",
+      "type": "prospective_cohort_change",
+      "evidence_manifestation_id": "M-BOR-TRI-2026-HTML",
+      "anchor": "Policy Scope section describes the 2015 version covering awards 2015-05-01 through 2026-12-31",
+      "review": {
+        "state": "analyst_checked",
+        "note": "earlier version attested in the 2026 notice; not yet recovered"
+      }
+    },
+    {
+      "id": "R-BNRA-2023-01",
+      "earlier_version_id": "V-BNRA-018-2022",
+      "later_version_id": "V-BOR-BNRA-012-2023",
+      "type": "explicit_replacement",
+      "evidence_manifestation_id": "M-BOR-BNRA-2023-PDF",
+      "anchor": "Art. 25 repeals Regulation 18/2022 (physical p. 10)",
+      "review": {
+        "state": "analyst_checked"
+      }
+    }
+  ]
+}

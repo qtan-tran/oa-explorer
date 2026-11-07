@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oa-explorer.invalid/contract/0.1.0/entities/version_relationship.json",
+  "title": "Version relationship row",
+  "description": "One CSV row of version_relationships.csv. Contract 0.1.0 (DRAFT). CSV cells are strings; types are checked after CSV parsing. x-column-order is the canonical CSV column order.",
+  "type": "object",
+  "x-entity-file": "version_relationships.csv",
+  "x-column-order": [
+    "relationship_id",
+    "from_version_id",
+    "to_version_id",
+    "type",
+    "evidence_anchor",
+    "review_state",
+    "public_visible",
+    "approved_by",
+    "approved_date",
+    "withhold_reason",
+    "legacy_ref",
+    "created_by",
+    "created_date",
+    "last_reviewed_by",
+    "last_reviewed_date",
+    "change_note",
+    "data_origin"
+  ],
+  "properties": {
+    "relationship_id": {
+      "type": "string",
+      "pattern": "^R-\\d{4}$"
+    },
+    "from_version_id": {
+      "type": "string",
+      "pattern": "^V-[A-Z]{2}-\\d{4}$"
+    },
+    "to_version_id": {
+      "type": "string",
+      "pattern": "^V-[A-Z]{2}-\\d{4}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "replaces",
+        "amended_by",
+        "implements",
+        "inherits_floor_from",
+        "template_of",
+        "related"
+      ]
+    },
+    "evidence_anchor": {
+      "type": "string"
+    },
+    "review_state": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "unreviewed",
+        "in_review",
+        "reviewed",
+        "approved_public"
+      ]
+    },
+    "public_visible": {
+      "type": "boolean"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "approved_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "withhold_reason": {
+      "type": "string"
+    },
+    "legacy_ref": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "created_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "last_reviewed_by": {
+      "type": "string"
+    },
+    "last_reviewed_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "change_note": {
+      "type": "string"
+    },
+    "data_origin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "corpus"
+      ]
+    }
+  },
+  "required": [
+    "relationship_id",
+    "from_version_id",
+    "to_version_id",
+    "type",
+    "review_state",
+    "public_visible",
+    "data_origin"
+  ],
+  "additionalProperties": false
+}
