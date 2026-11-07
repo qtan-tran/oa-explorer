@@ -1,0 +1,1025 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/roara/contract/v0.3.2",
+  "title": "ROARA policy corpus exchange contract, draft v0.3.2",
+  "description": "Internal draft; shape only. Cross-record references, score comparability, rights and duplicate-byte rules require separate checks.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "release",
+    "countries",
+    "organizations",
+    "families",
+    "versions",
+    "manifestations",
+    "provisions",
+    "relationships",
+    "score_definitions",
+    "score_observations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.3.2-draft"
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_id",
+        "as_of",
+        "scope_note",
+        "public_release_approved"
+      ],
+      "properties": {
+        "release_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date",
+          "description": "Cutoff date represented by the release contents, not its publication date."
+        },
+        "scope_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "public_release_approved": {
+          "type": "boolean",
+          "description": "Whole-release approval; does not convert individual source rights or internal QC hold flags."
+        },
+        "published_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Public publication timestamp of this release; null until published."
+        }
+      }
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "label",
+          "frame_description"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "frame_description": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "organizations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "country_code",
+          "issuer_type"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "issuer_type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "rpo",
+              "rfo",
+              "national_government",
+              "science_academy",
+              "consortium",
+              "other",
+              null
+            ],
+            "description": "Null means type not established; identity_review carries review state."
+          },
+          "identity_review": {
+            "$ref": "#/$defs/review"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "issuer_id",
+          "family_label"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "issuer_id": {
+            "$ref": "#/$defs/id"
+          },
+          "family_label": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/version"
+      }
+    },
+    "manifestations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/manifestation"
+      }
+    },
+    "provisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provision"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      }
+    },
+    "score_definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/scoreDefinition"
+      }
+    },
+    "score_observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/scoreObservation"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "unreviewed",
+            "provisionally_reviewed",
+            "analyst_checked",
+            "independently_reviewed",
+            "conflicted"
+          ]
+        },
+        "extent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "dateClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value",
+        "precision",
+        "status"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "adopted",
+            "approved",
+            "published",
+            "effective",
+            "review_due",
+            "other",
+            "cohort_start",
+            "cohort_end",
+            "promulgated"
+          ],
+          "description": "Published is a publication event, promulgated is an explicit promulgation event; neither automatically implies effective date. Use source-specific rule and record conflict if dates differ."
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+        },
+        "precision": {
+          "enum": [
+            "year",
+            "month",
+            "day",
+            "unknown"
+          ]
+        },
+        "status": {
+          "enum": [
+            "verified",
+            "issuer_attested",
+            "inferred",
+            "conflicted",
+            "unknown",
+            "unreviewed",
+            "not_applicable"
+          ]
+        },
+        "evidence_manifestation_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "physical_anchor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "family_id",
+        "title_original",
+        "languages",
+        "instrument_function",
+        "authority_status",
+        "source_status",
+        "dates",
+        "review",
+        "issuer_ids",
+        "cohorts"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "family_id": {
+          "$ref": "#/$defs/id"
+        },
+        "title_original": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title_english": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "instrument_function": {
+          "enum": [
+            "institutional_oa_os",
+            "funder_grant_term",
+            "national_os_strategy",
+            "national_assessment_subsidy",
+            "repository_operation",
+            "apc_funding_criteria",
+            "research_data_governance",
+            "announcement",
+            "other",
+            "unreviewed"
+          ]
+        },
+        "authority_status": {
+          "enum": [
+            "issued",
+            "approved",
+            "draft",
+            "unverified"
+          ],
+          "description": "Issuer legal/administrative standing supported by authority evidence; independent of byte recovery."
+        },
+        "source_status": {
+          "enum": [
+            "original_recovered",
+            "issuer_html_captured",
+            "mirror_only",
+            "attested_unrecovered",
+            "unreviewed"
+          ],
+          "description": "What source material was obtained; a recovered draft has authority_status=draft and source_status=original_recovered. A reported approval without operative bytes may be approved plus attested_unrecovered, with review/evidence caveat."
+        },
+        "dates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/dateClaim"
+          }
+        },
+        "scope_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        },
+        "issuer_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "cohorts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cohort"
+          }
+        },
+        "effective_date_interpretation": {
+          "enum": [
+            "explicit",
+            "approval_linked",
+            "publication_linked",
+            "promulgation_linked",
+            "cohort_only",
+            "conflicted",
+            "unknown",
+            "unreviewed"
+          ]
+        },
+        "languages": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2
+          },
+          "description": "Languages present in controlling text; empty means unreviewed. A bilingual original is one version with both languages."
+        }
+      }
+    },
+    "manifestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version_id",
+        "role",
+        "format",
+        "languages",
+        "source_url",
+        "sha256",
+        "rights_status",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "role": {
+          "enum": [
+            "controlling_original",
+            "issuer_html_capture",
+            "mirror",
+            "translation",
+            "alternate_manifestation",
+            "ancillary",
+            "unrecovered_lead"
+          ]
+        },
+        "format": {
+          "enum": [
+            "pdf",
+            "html",
+            "docx",
+            "rtf",
+            "other",
+            "unknown"
+          ]
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "physical_pages": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "description": "Count of physical PDF pages, not the printed page label. For HTML use null."
+        },
+        "retrieved_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Only retrieval timestamp field for a manifestation; not a policy dateClaim. Preserve time if known; dates-only legacy values may remain during migration."
+        },
+        "rights_status": {
+          "enum": [
+            "public_redistribution_approved",
+            "link_only_approved",
+            "internal_only",
+            "unreviewed"
+          ],
+          "description": "For a newly captured issuer HTML page default to unreviewed. A public URL does not authorize HTML redistribution. After URL and link-rights review, link_only_approved can permit a link; content export needs separate approval."
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        },
+        "component_of_manifestation_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authority_evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "archived_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "description": "Stable archived snapshot URL when verified; null if unknown. Do not infer from a live issuer URL."
+        },
+        "duplicate_of_manifestation_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Only for an alternate URL/record serving identical bytes; canonical manifestation reference must resolve to matching SHA-256 and one underlying policy-version manifestation."
+        },
+        "archive_snapshots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "url",
+              "capture_status"
+            ],
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "captured_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "snapshot_sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "capture_status": {
+                "enum": [
+                  "verified_bytes",
+                  "issuer_attested",
+                  "url_only",
+                  "unreviewed"
+                ]
+              },
+              "note": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "description": "Public archived link requires a successfully opened snapshot with verified original content and rights/link gate; URL-only discovery is internal."
+        },
+        "languages": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2
+          },
+          "description": "Languages in this exact manifestation, empty if not inspected. A bilingual file lists both."
+        },
+        "family_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Required when version_id is null; identifies a family-level unrecovered lead."
+        },
+        "pagination_note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional printed pagination map or offset; provision anchor always states physical page and any printed label."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "version_id": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "version_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "role": {
+                "const": "unrecovered_lead"
+              },
+              "family_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "family_id"
+            ]
+          }
+        }
+      ]
+    },
+    "provision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version_id",
+        "manifestation_id",
+        "original_excerpt",
+        "anchor",
+        "actor",
+        "action",
+        "object",
+        "modality",
+        "condition",
+        "exception",
+        "review",
+        "excerpt_rights_status",
+        "cohort_ids",
+        "cohort_applicability_status"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version_id": {
+          "$ref": "#/$defs/id"
+        },
+        "manifestation_id": {
+          "$ref": "#/$defs/id"
+        },
+        "original_excerpt": {
+          "type": "string"
+        },
+        "translation_english": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "anchor": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Physical page first and article/section; include printed page label when different, e.g. physical p.56; printed p.53."
+        },
+        "actor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "action": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "object": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "condition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "exception": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "code_status": {
+          "enum": [
+            "unreviewed",
+            "provisional",
+            "reviewed_presence",
+            "reviewed_absence",
+            "not_applicable"
+          ]
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        },
+        "excerpt_rights_status": {
+          "enum": [
+            "approved_for_public_export",
+            "internal_only",
+            "unreviewed"
+          ]
+        },
+        "function_relation": {
+          "enum": [
+            "policy_clause",
+            "implementation_guidance",
+            "apc_operational_eligibility",
+            "assessment_subsidy_rule",
+            "other",
+            "unreviewed"
+          ]
+        },
+        "cohort_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "References version cohort IDs. Empty only with all_covered, unknown or not_applicable status; subset requires at least one ID in cross-record validation."
+        },
+        "cohort_applicability_status": {
+          "enum": [
+            "all_covered",
+            "subset",
+            "unknown",
+            "not_applicable"
+          ]
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "earlier_version_id",
+        "later_version_id",
+        "type",
+        "evidence_manifestation_id",
+        "anchor",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "earlier_version_id": {
+          "$ref": "#/$defs/id"
+        },
+        "later_version_id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "enum": [
+            "explicit_replacement",
+            "amendment",
+            "prospective_cohort_change",
+            "issuer_claimed_renewal",
+            "possible_relation",
+            "other"
+          ]
+        },
+        "evidence_manifestation_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "anchor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      }
+    },
+    "cohort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "applies_to",
+        "start",
+        "end",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "applies_to": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "event_type",
+            "object_scope"
+          ],
+          "properties": {
+            "event_type": {
+              "enum": [
+                "call_opened",
+                "award_made",
+                "grant_period_started",
+                "publication_date",
+                "submission_date",
+                "other",
+                "unreviewed"
+              ]
+            },
+            "object_scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "event_details": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "issuer_program": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "start": {
+          "$ref": "#/$defs/dateClaim",
+          "description": "Unknown-start cohort: dateClaim value null, precision unknown, status unknown/unreviewed, not a negative-infinity start. Query cannot infer coverage before a verified bound."
+        },
+        "end": {
+          "$ref": "#/$defs/dateClaim",
+          "description": "Open-ended cohort: dateClaim value null and status not_applicable only when the original explicitly has no upper bound; otherwise unknown or unreviewed."
+        },
+        "exceptions": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      }
+    },
+    "scoreDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "codebook_version",
+        "scale_id",
+        "instrument_functions"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string"
+        },
+        "codebook_version": {
+          "type": "string"
+        },
+        "scale_id": {
+          "$ref": "#/$defs/id"
+        },
+        "instrument_functions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "scoreObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version_id",
+        "dimension_id",
+        "scale_id",
+        "status",
+        "value",
+        "source_scope",
+        "review_extent",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version_id": {
+          "$ref": "#/$defs/id"
+        },
+        "dimension_id": {
+          "$ref": "#/$defs/id"
+        },
+        "scale_id": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "unreviewed",
+            "unknown",
+            "reviewed_absence",
+            "provisional_value",
+            "reviewed_value",
+            "not_applicable",
+            "conflicted"
+          ]
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Null for unreviewed/unknown/not_applicable/conflicted. Zero only if the exact scale defines it and a reviewed decision records absence or lowest anchor."
+        },
+        "source_scope": {
+          "type": "string",
+          "description": "State covered instrument function, actor, action, object, condition, cohort and review extent before comparing values."
+        },
+        "review_extent": {
+          "type": "string"
+        },
+        "actor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Actor whose compliance/action is evaluated, only if source scope supports it; null when mixed/unresolved. Not the analyst/coder."
+        },
+        "action": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Policy action being evaluated, not the scoring act; null when multiple or unresolved, with source_scope and basis provisions preserving detail."
+        },
+        "object": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "condition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "basis_provision_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        },
+        "comparability_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

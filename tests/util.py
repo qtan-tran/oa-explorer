@@ -220,3 +220,20 @@ def load_exchange_v031_doc() -> dict:
 
 def load_exchange_v031_schema() -> dict:
     return json.loads(EXCHANGE_V031_SCHEMA.read_text(encoding="utf-8"))
+
+
+# --------------------------------------------------------------------------
+# Exchange-contract v0.3.2 fixture (Session 6: eight questions Q2/Q4/Q7/
+# Q10-Q13/Q15 resolved)
+# --------------------------------------------------------------------------
+
+EXCHANGE_V032_INPUT = SYNTHETIC / "exchange_v032.json"
+EXCHANGE_V032_SCHEMA = CONTRACT / "exchange" / "roara_contract_v0.3.2.schema.json"
+
+
+def load_exchange_v032_doc() -> dict:
+    return json.loads(EXCHANGE_V032_INPUT.read_text(encoding="utf-8"))
+
+
+def load_exchange_v032_schema() -> dict:
+    return json.loads(EXCHANGE_V032_SCHEMA.read_text(encoding="utf-8"))

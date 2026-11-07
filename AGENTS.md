@@ -81,6 +81,22 @@ decision). The data contract is a DRAFT pending corpus-team ratification.
   schema-delta/contradiction check, test delta and the eight open
   questions Q2/Q4/Q7/Q10–Q13/Q15 verbatim. Nothing published or deployed;
   no real data touched; gates closed.
+- Session 6 (2026-11-08): v0.3.2 exchange-contract draft, synthetic only.
+  Attached `roara_contract_v0.3.2.schema.json` verbatim (`0.3.2-draft`,
+  not ratified); all fifteen exchange questions resolved. v0.3.2 semantic
+  layer in `exchange_v03_lib.py`: internal QC hold independent of release
+  approval (pilot QC workbook gitignored, never committed, never publicly
+  imported); authority/source orthogonality with QC-conflict routing and
+  evidence-only legacy enum migration; captured-HTML rights default
+  unreviewed; language arrays (editions vs bilingual file); physical page
+  count vs printed labels; nullable issuer_type; release as_of vs
+  published_at; null version_id only for family-bound unrecovered leads.
+  New fixture `synthetic/exchange_v032.json` with the nine synthetic
+  scenarios; tests 31–33 (42 new; 272 total, all passing); slice doc with
+  mismatches (incl. schema `allOf/if/then` enforced semantically) and
+  remaining questions (ten-score codebook still unsupplied — numeric
+  fields unpopulated). Nothing published or deployed; no real data;
+  gates closed.
 
 ## Non-negotiable rules
 

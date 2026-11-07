@@ -6,6 +6,10 @@
 ledger/
 ledger.*
 
+# Internal pilot source QC workbooks contain review state about real
+# sources; they are corpus-internal and never committed to this public repo
+pilot_source_qc*.csv
+
 # Generated exports (public exports are committed only after M4 approval;
 # review exports are always local)
 exports/

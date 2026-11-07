@@ -3,6 +3,32 @@
 All notable changes to this repository. Format: Keep a Changelog; versioning:
 the repository follows the plan's milestones, contract semver is separate.
 
+## [0.4.2] - 2026-11-08
+### Added (v0.3.2 exchange-contract draft: eight questions resolved, synthetic only)
+- Draft exchange contract v0.3.2 (`contract/exchange/roara_contract_v0.3.2.schema.json`,
+  `0.3.2-draft`, attached verbatim; not ratified). All fifteen prior exchange
+  questions now resolved.
+- `pipeline/exchange_v03_lib.py` v0.3.2 semantic layer: internal QC hold
+  independent of release approval (Q2, local-only gitignored workbook);
+  authority/source orthogonality + QC-conflict routing + evidence-only
+  legacy enum migration (Q4); captured-HTML rights default unreviewed,
+  link-only as affirmative reviewed decision (Q7); `languages` arrays
+  with edition-vs-bilingual-file rules (Q10); physical page count vs
+  printed label anchors + `pagination_note` (Q11); nullable `issuer_type`
+  with identity review (Q12); `release.as_of` content cutoff vs nullable
+  `published_at` (Q13); null `version_id` only for family-bound
+  unrecovered leads (Q15).
+- `synthetic/exchange_v032.json`: nine synthetic scenarios incl. draft
+  PDF recovered, attested-approved without operative bytes, en/fr
+  editions vs bilingual single file, 85-page PDF with physical p.56 /
+  printed p.53, null-version family lead, unreviewed HTML capture.
+  Ten-score numeric fields unpopulated; gates closed.
+- Tests 31–33 (42 new; 272 total, all passing).
+- `.gitignore` guard: `pilot_source_qc*.csv` never committed (test-enforced).
+- `docs/plans/2026-11-08-exchange-v0.3.2-slice.md`: decision table,
+  schema/semantic mismatches (incl. unsupported `allOf/if/then` handled
+  semantically), test outcomes, remaining questions.
+
 ## [0.4.1] - 2026-11-08
 ### Added (v0.3.1 exchange-contract draft: corpus decisions, synthetic only)
 - Draft exchange contract v0.3.1 (`contract/exchange/roara_contract_v0.3.1.schema.json`,

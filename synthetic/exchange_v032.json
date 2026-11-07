@@ -1,0 +1,406 @@
+{
+  "schema_version": "0.3.2-draft",
+  "release": {
+    "release_id": "SYNTHETIC-EXCHANGE-V032-DEMO-001",
+    "as_of": "2026-11-08",
+    "published_at": null,
+    "scope_note": "SYNTHETIC DEMONSTRATION EXCHANGE v0.3.2. Every record is a synthetic structural scenario for contract testing; no original policy file or excerpt is imported, the six pilot QC rows stay internal and uncommitted, and all public download/excerpt/score gates are CLOSED (public_release_approved: false). as_of is the content cutoff, published_at is null until publication.",
+    "public_release_approved": false
+  },
+  "countries": [
+    {
+      "code": "CO",
+      "label": "Colombia",
+      "frame_description": "SYNTHETIC regression scenario only: structural model of a Colombian ministerial resolution (85-page PDF, physical/printed pagination). No real corpus record, excerpt or prevalence claim."
+    },
+    {
+      "code": "XA",
+      "label": "Republic of Arcadia",
+      "frame_description": "SYNTHETIC. Fictional state (ISO user-assigned code XA) used to exercise the v0.3.2 exchange contract rules."
+    }
+  ],
+  "organizations": [
+    {
+      "id": "O-XA-DRAFT-U",
+      "name": "Arcadia Draft Institute",
+      "country_code": "XA",
+      "issuer_type": "rpo",
+      "identity_review": {"state": "analyst_checked"}
+    },
+    {
+      "id": "O-XA-ATT-U",
+      "name": "Arcadia Attestation University",
+      "country_code": "XA",
+      "issuer_type": null,
+      "identity_review": {"state": "unreviewed", "note": "Q12: type not established; review state lives here, not in issuer_type."}
+    },
+    {
+      "id": "O-XA-BIL-U",
+      "name": "Arcadia Bilingual University",
+      "country_code": "XA",
+      "issuer_type": "rpo",
+      "identity_review": {"state": "analyst_checked"}
+    },
+    {
+      "id": "O-XA-HTML-U",
+      "name": "Arcadia Mutable Page Institute",
+      "country_code": "XA",
+      "issuer_type": "rpo",
+      "identity_review": {"state": "analyst_checked"}
+    },
+    {
+      "id": "O-XA-LEAD",
+      "name": "Arcadia Unrecovered Lead Holder",
+      "country_code": "XA",
+      "issuer_type": "other",
+      "identity_review": {"state": "unreviewed"}
+    },
+    {
+      "id": "O-CO-MINCIENCIAS",
+      "name": "Ministerio de Ciencia, Tecnología e Innovación (MinCiencias)",
+      "country_code": "CO",
+      "issuer_type": "national_government",
+      "identity_review": {"state": "analyst_checked"}
+    }
+  ],
+  "families": [
+    {"id": "F-XA-DRAFT", "issuer_id": "O-XA-DRAFT-U", "family_label": "SYNTHETIC: draft-policy family (recovered draft PDF scenario)"},
+    {"id": "F-XA-ATT", "issuer_id": "O-XA-ATT-U", "family_label": "SYNTHETIC: attested-approval family (no operative bytes scenario)"},
+    {"id": "F-XA-BIL-ED", "issuer_id": "O-XA-BIL-U", "family_label": "SYNTHETIC: separate en/fr issuer editions of one version"},
+    {"id": "F-XA-BIL-SF", "issuer_id": "O-XA-BIL-U", "family_label": "SYNTHETIC: single bilingual file, one version one manifestation"},
+    {"id": "F-XA-HTML", "issuer_id": "O-XA-HTML-U", "family_label": "SYNTHETIC: mutable HTML capture with unreviewed rights"},
+    {"id": "F-XA-LEAD", "issuer_id": "O-XA-LEAD", "family_label": "SYNTHETIC: family-level unrecovered lead (null version binding)"},
+    {"id": "F-CO-RES0777", "issuer_id": "O-CO-MINCIENCIAS", "family_label": "SYNTHETIC: Colombian resolution family (85-page PDF, publication_linked)"}
+  ],
+  "versions": [
+    {
+      "id": "V-XA-DRAFT-2024",
+      "family_id": "F-XA-DRAFT",
+      "title_original": "Arcadia draft research policy 2024 [SYNTHETIC]",
+      "title_english": null,
+      "languages": ["en"],
+      "instrument_function": "institutional_oa_os",
+      "authority_status": "draft",
+      "source_status": "original_recovered",
+      "dates": [
+        {"type": "adopted", "value": "2024-05-01", "precision": "day", "status": "verified", "evidence_manifestation_id": "M-XA-DRAFT-PDF", "physical_anchor": "physical p.1", "note": "Draft adopted by the institute."},
+        {"type": "effective", "value": "2024-06-01", "precision": "day", "status": "verified", "evidence_manifestation_id": "M-XA-DRAFT-PDF", "physical_anchor": "physical p.2", "note": "Draft states its own (future) effective date."}
+      ],
+      "scope_note": "Scenario 1: recovered DRAFT PDF — authority_status=draft and source_status=original_recovered are orthogonal (Q4).",
+      "review": {"state": "analyst_checked"},
+      "issuer_ids": ["O-XA-DRAFT-U"],
+      "cohorts": [],
+      "effective_date_interpretation": "explicit"
+    },
+    {
+      "id": "V-XA-ATTESTED-2026",
+      "family_id": "F-XA-ATT",
+      "title_original": "Arcadia attested agreement 2026 [SYNTHETIC — approved per issuer announcement, operative bytes not recovered]",
+      "title_english": null,
+      "languages": ["en"],
+      "instrument_function": "unreviewed",
+      "authority_status": "approved",
+      "source_status": "attested_unrecovered",
+      "dates": [
+        {"type": "adopted", "value": "2026-01-29", "precision": "day", "status": "issuer_attested", "evidence_manifestation_id": "M-XA-ATT-LEAD", "physical_anchor": null, "note": "Adoption dated by issuer news only; no signed PDF/annex, effective date, physical clause or hash verified."}
+      ],
+      "scope_note": "Scenario 2: issuer-attested APPROVED version with no operative bytes — approved + attested_unrecovered with provenance caveat; bound to its registered version (Q15); excluded from comparison/public views.",
+      "review": {"state": "provisionally_reviewed", "note": "Provenance caveat: issuer announcement attests approval; operative original not recovered."},
+      "issuer_ids": ["O-XA-ATT-U"],
+      "cohorts": [],
+      "effective_date_interpretation": "unknown"
+    },
+    {
+      "id": "V-XA-BIL-ED-2023",
+      "family_id": "F-XA-BIL-ED",
+      "title_original": "Arcadia bilingual policy 2023, separate issuer editions [SYNTHETIC]",
+      "title_english": null,
+      "languages": ["en", "fr"],
+      "instrument_function": "institutional_oa_os",
+      "authority_status": "issued",
+      "source_status": "original_recovered",
+      "dates": [],
+      "scope_note": "Scenario 3a: separate English and French issuer editions are distinct manifestations of ONE version (Q10); two languages never become two versions.",
+      "review": {"state": "analyst_checked"},
+      "issuer_ids": ["O-XA-BIL-U"],
+      "cohorts": [],
+      "effective_date_interpretation": "unknown"
+    },
+    {
+      "id": "V-XA-BIL-SF-2023",
+      "family_id": "F-XA-BIL-SF",
+      "title_original": "Arcadia bilingual policy 2023, single bilingual file [SYNTHETIC]",
+      "title_english": null,
+      "languages": ["en", "fr"],
+      "instrument_function": "institutional_oa_os",
+      "authority_status": "issued",
+      "source_status": "original_recovered",
+      "dates": [],
+      "scope_note": "Scenario 3b: one bilingual controlling original = one version, one manifestation listing both language codes (Q10).",
+      "review": {"state": "analyst_checked"},
+      "issuer_ids": ["O-XA-BIL-U"],
+      "cohorts": [],
+      "effective_date_interpretation": "unknown"
+    },
+    {
+      "id": "V-XA-HTML-2026",
+      "family_id": "F-XA-HTML",
+      "title_original": "Arcadia mutable webpage notice 2026 [SYNTHETIC]",
+      "title_english": null,
+      "languages": ["en"],
+      "instrument_function": "announcement",
+      "authority_status": "issued",
+      "source_status": "issuer_html_captured",
+      "dates": [],
+      "scope_note": "Scenario 6: captured issuer HTML defaults to rights_status=unreviewed (Q7); a public URL permits at most a reviewed link-only route.",
+      "review": {"state": "analyst_checked"},
+      "issuer_ids": ["O-XA-HTML-U"],
+      "cohorts": [],
+      "effective_date_interpretation": "unreviewed"
+    },
+    {
+      "id": "V-CO-RES-0777-2022",
+      "family_id": "F-CO-RES0777",
+      "title_original": "Resolución 0777 de 2022 [SYNTHETIC scenario record — no original text imported]",
+      "title_english": null,
+      "languages": ["es"],
+      "instrument_function": "other",
+      "authority_status": "approved",
+      "source_status": "original_recovered",
+      "dates": [
+        {"type": "adopted", "value": "2022-08-03", "precision": "day", "status": "verified", "evidence_manifestation_id": "M-CO-0777-PDF", "physical_anchor": "physical p.2", "note": "Signed resolution dated 2022-08-03."},
+        {"type": "published", "value": "2022-12-09", "precision": "day", "status": "issuer_attested", "evidence_manifestation_id": "M-CO-0777-PDF", "physical_anchor": "Diario Oficial, edición 52.243 (facsimile)", "note": "Gazette facsimile issue 52.243 dated 2022-12-09; official-host issue file pending, hence issuer_attested."},
+        {"type": "other", "value": null, "precision": "unknown", "status": "unknown", "evidence_manifestation_id": null, "physical_anchor": null, "note": "Annex attachment-update timestamp pending corroboration."}
+      ],
+      "scope_note": "Scenario 4: 85-page PDF; Art.3 (physical p.3) in force upon publication → publication_linked; annex Meta 31 at physical p.56 / printed p.53 (Q11).",
+      "review": {"state": "provisionally_reviewed", "extent": "resolution pp.1-3 and annex physical p.56 checked; gazette official copy pending"},
+      "issuer_ids": ["O-CO-MINCIENCIAS"],
+      "cohorts": [
+        {
+          "id": "C-CO-0777-META31",
+          "applies_to": {"event_type": "publication_date", "object_scope": "publicly funded publications targeted by annex Meta 31 through 2027", "event_details": "SYNTHETIC cohort placeholder; a cohort threshold is never a general effective date", "issuer_program": "SYNTHETIC programme placeholder"},
+          "start": {"type": "cohort_start", "value": "2022-12-09", "precision": "day", "status": "verified", "evidence_manifestation_id": "M-CO-0777-PDF", "physical_anchor": "physical p.56; printed p.53", "note": "Cohort bound for publication_date events only."},
+          "end": {"type": "cohort_end", "value": "2027-12-31", "precision": "day", "status": "verified", "evidence_manifestation_id": "M-CO-0777-PDF", "physical_anchor": "physical p.56; printed p.53", "note": "Bounded cohort."},
+          "exceptions": null,
+          "review": {"state": "provisionally_reviewed"}
+        }
+      ],
+      "effective_date_interpretation": "publication_linked"
+    }
+  ],
+  "manifestations": [
+    {
+      "id": "M-XA-DRAFT-PDF",
+      "version_id": "V-XA-DRAFT-2024",
+      "family_id": null,
+      "role": "controlling_original",
+      "format": "pdf",
+      "languages": ["en"],
+      "source_url": "https://draft.example.org/synthetic/draft-2024.pdf",
+      "sha256": "3ec03154944f975a1f14d72d3de4973fa54b6788d285450480eacb71f953e01d",
+      "physical_pages": 3,
+      "pagination_note": null,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "analyst_checked"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Recovered draft PDF; authority standing is draft while the bytes ARE recovered (orthogonal, Q4).",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-XA-ATT-LEAD",
+      "version_id": "V-XA-ATTESTED-2026",
+      "family_id": null,
+      "role": "unrecovered_lead",
+      "format": "unknown",
+      "languages": ["en"],
+      "source_url": "https://att.example.org/news/2026-01-29",
+      "sha256": null,
+      "physical_pages": null,
+      "pagination_note": null,
+      "retrieved_at": null,
+      "rights_status": "unreviewed",
+      "review": {"state": "unreviewed", "note": "Issuer news item only; no operative bytes."},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Issuer announcement attests approval; no signed PDF/annex, effective date, physical clause or hash verified.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-XA-BIL-EN",
+      "version_id": "V-XA-BIL-ED-2023",
+      "family_id": null,
+      "role": "controlling_original",
+      "format": "pdf",
+      "languages": ["en"],
+      "source_url": "https://bil.example.org/synthetic/policy-2023-en.pdf",
+      "sha256": "7d4f2a5775770fcb6b22532321c3507b3f91d19ee3cd227693da45f08d22188b",
+      "physical_pages": 10,
+      "pagination_note": null,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "analyst_checked"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "English issuer edition.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-XA-BIL-FR",
+      "version_id": "V-XA-BIL-ED-2023",
+      "family_id": null,
+      "role": "alternate_manifestation",
+      "format": "pdf",
+      "languages": ["fr"],
+      "source_url": "https://bil.example.org/synthetic/policy-2023-fr.pdf",
+      "sha256": "f8a5fb0ba6f5f058a5719a0ab21ac24abb0df017d926c78a0cee4592b2f81b31",
+      "physical_pages": 11,
+      "pagination_note": "French edition pagination differs by one leaf from the English edition.",
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "analyst_checked"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "French issuer edition of the SAME version; equivalence attested by the issuer (Q10: distinct manifestation, not a second version).",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-XA-BIL-SF-PDF",
+      "version_id": "V-XA-BIL-SF-2023",
+      "family_id": null,
+      "role": "controlling_original",
+      "format": "pdf",
+      "languages": ["en", "fr"],
+      "source_url": "https://bil.example.org/synthetic/policy-2023-bilingual.pdf",
+      "sha256": "ee7252424552d3ea092b2aa8ea4bf271be34fb45a939da52073ae8410cfa2bf3",
+      "physical_pages": 12,
+      "pagination_note": null,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "analyst_checked"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Single bilingual file: both language codes on one manifestation of one version (Q10).",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-XA-HTML-PAGE",
+      "version_id": "V-XA-HTML-2026",
+      "family_id": null,
+      "role": "issuer_html_capture",
+      "format": "html",
+      "languages": ["en"],
+      "source_url": "https://html.example.org/synthetic/notice-2026",
+      "sha256": "81fbd1e1f07a32263757948b58384249d95dee1d93fe66721f7041b663cbc0bb",
+      "physical_pages": null,
+      "pagination_note": null,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "unreviewed",
+      "review": {"state": "analyst_checked"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Mutable issuer page; captured bytes stored internally.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-XA-FAM-LEAD",
+      "version_id": null,
+      "family_id": "F-XA-LEAD",
+      "role": "unrecovered_lead",
+      "format": "unknown",
+      "languages": [],
+      "source_url": "https://lead.example.org/synthetic/possible-policy",
+      "sha256": null,
+      "physical_pages": null,
+      "pagination_note": null,
+      "retrieved_at": null,
+      "rights_status": "unreviewed",
+      "review": {"state": "unreviewed"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Family-level lead only; cannot carry provision or score evidence (Q15).",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-CO-0777-PDF",
+      "version_id": "V-CO-RES-0777-2022",
+      "family_id": null,
+      "role": "controlling_original",
+      "format": "pdf",
+      "languages": ["es"],
+      "source_url": "https://minciencias.example.org/synthetic/res0777-2022.pdf",
+      "sha256": "cc06686e8aa995e118274c671d51147d26fc117dc0cc1c54512f352ef56f90b0",
+      "physical_pages": 85,
+      "pagination_note": "Physical p.56 corresponds to printed p.53 (Q11: physical_pages is the leaf count 85, never the printed label).",
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "provisionally_reviewed"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Issuer original PDF, 85 physical leaves; Art.1 (physical p.2) incorporates the annex; Art.3 (physical p.3) in force upon publication.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    }
+  ],
+  "provisions": [
+    {
+      "id": "P-CO-0777-META31",
+      "version_id": "V-CO-RES-0777-2022",
+      "manifestation_id": "M-CO-0777-PDF",
+      "original_excerpt": "[SYNTHETIC PLACEHOLDER — no original excerpt imported pending rights review]",
+      "translation_english": null,
+      "anchor": "physical p.56; printed p.53 (annex Meta 31)",
+      "actor": "Ministerio de Ciencia, Tecnología e Innovación",
+      "action": "establece meta condicionada",
+      "object": "publicaciones financiadas con fondos públicos",
+      "scope": "publicly funded publications where possible",
+      "modality": "condicionado",
+      "condition": "publication_date within the cohort (condición sintética)",
+      "exception": null,
+      "code_status": "provisional",
+      "review": {"state": "provisionally_reviewed", "extent": "annex physical p.56 checked"},
+      "excerpt_rights_status": "internal_only",
+      "function_relation": "policy_clause",
+      "cohort_ids": ["C-CO-0777-META31"],
+      "cohort_applicability_status": "subset"
+    }
+  ],
+  "relationships": [],
+  "score_definitions": [
+    {
+      "id": "SD-SYNTH-DIM-01",
+      "label": "SYNTHETIC placeholder dimension — ten-score labels, scale anchors and codebook version NOT yet supplied by the corpus thread; numeric fields stay unpopulated",
+      "codebook_version": "not-supplied",
+      "scale_id": "SCALE-SYNTH-01",
+      "instrument_functions": ["other"],
+      "description": "Placeholder only; no numeric ten-score import and no composite."
+    }
+  ],
+  "score_observations": [
+    {
+      "id": "SO-SYNTH-01",
+      "version_id": "V-CO-RES-0777-2022",
+      "dimension_id": "SD-SYNTH-DIM-01",
+      "scale_id": "SCALE-SYNTH-01",
+      "status": "unreviewed",
+      "value": null,
+      "source_scope": "SYNTHETIC: whole version, unreviewed",
+      "review_extent": "none",
+      "actor": null,
+      "action": null,
+      "object": null,
+      "condition": null,
+      "basis_provision_ids": ["P-CO-0777-META31"],
+      "review": {"state": "unreviewed"},
+      "comparability_note": "Numeric value withheld until the authoritative codebook arrives; no composite computed."
+    }
+  ]
+}

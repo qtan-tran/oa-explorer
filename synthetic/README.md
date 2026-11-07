@@ -88,3 +88,22 @@ Every file in this directory is **entirely fictional demonstration data**.
   unbounded end).
 - All excerpts are `[SYNTHETIC PLACEHOLDER …]` strings; no original policy
   file, excerpt or URL path is imported.
+
+## Exchange fixture (Session 6, v0.3.2 draft)
+
+- `exchange_v032.json` is the **synthetic demonstration exchange document**
+  for the draft v0.3.2 contract (`schema_version: 0.3.2-draft`): 6
+  versions, 8 manifestations, 1 provision, 1 placeholder score definition,
+  1 unpopulated score observation. `public_release_approved` is
+  **false**; `published_at` is null until publication.
+- It covers the nine v0.3.2 scenarios: recovered draft PDF
+  (`draft`+`original_recovered`), issuer-attested approved version with
+  no operative bytes (`approved`+`attested_unrecovered`, bound to its
+  version), en/fr issuer editions as two manifestations of one version
+  vs one bilingual single file, an 85-page PDF with a "physical p.56;
+  printed p.53" anchor, a null-version family-bound unrecovered lead, and
+  an HTML capture with `rights_status=unreviewed`. The internal QC-hold
+  workbook pattern (`pilot_source_qc*.csv`) is gitignored and never
+  committed; tests use inline synthetic hold rows instead.
+- Ten-score numeric fields stay unpopulated until the corpus thread
+  supplies labels, scale anchors and a codebook version.

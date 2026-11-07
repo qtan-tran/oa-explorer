@@ -119,6 +119,9 @@ def _check_format(inst: str, fmt: str, path: str, errors: list[str]) -> None:
     """Draft 2020-12 treats format as annotation; we do light checks."""
     if fmt == "date" and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", inst):
         errors.append(f"{path}: not a valid date (YYYY-MM-DD): {inst!r}")
+    elif fmt == "date-time" and not re.fullmatch(
+            r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})", inst):
+        errors.append(f"{path}: not a valid date-time: {inst!r}")
     elif fmt == "uri" and not re.match(r"^[a-z][a-z0-9+.-]*://", inst):
         errors.append(f"{path}: not an absolute URI: {inst!r}")
 
@@ -606,6 +609,7 @@ def build_public_views(doc: dict, cfg: PublicConfig) -> dict:
                 "kind": m["role"],
                 "format": m["format"],
                 "language": m.get("language"),
+                "languages": m.get("languages"),
                 "url": m.get("source_url") if link else None,
                 "download_url": m.get("source_url") if download else None,
                 "rights": m["rights_status"],
@@ -663,7 +667,8 @@ def build_public_views(doc: dict, cfg: PublicConfig) -> dict:
             "id": v["id"],
             "title_original": v["title_original"],
             "title_english": v.get("title_english"),
-            "language": v["language"],
+            "language": v.get("language"),
+            "languages": v.get("languages"),
             "function": v["instrument_function"],
             "function_label": FUNCTION_LABELS.get(v["instrument_function"],
                                                   v["instrument_function"]),

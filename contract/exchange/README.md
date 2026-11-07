@@ -1,6 +1,13 @@
 # Exchange contracts (drafts)
 
-- `roara_contract_v0.3.1.schema.json` — **current draft** internal contract
+- `roara_contract_v0.3.2.schema.json` — **current draft** internal contract
+  (schema_version `0.3.2-draft`), attached 2026-11-08. **Not ratified.**
+  Resolves the last eight open questions (Q2 internal QC hold, Q4
+  authority/source orthogonality, Q7 HTML rights default, Q10 language
+  arrays, Q11 pagination, Q12 nullable issuer type, Q13 as_of/published_at,
+  Q15 null-version family leads). See
+  [`docs/plans/2026-11-08-exchange-v0.3.2-slice.md`](../../docs/plans/2026-11-08-exchange-v0.3.2-slice.md).
+- `roara_contract_v0.3.1.schema.json` — superseded draft internal contract
   (schema_version `0.3.1-draft`), attached 2026-11-08 as the owner-reviewed
   successor design. **Not ratified.** Adds to v0.3: `publication_linked`
   effective interpretation (published and promulgated are distinct source

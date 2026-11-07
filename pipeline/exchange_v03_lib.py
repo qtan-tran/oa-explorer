@@ -477,10 +477,12 @@ def validate_v03(doc: dict, schema: dict) -> tuple[list[str], list[str],
     """Full v0.3/v0.3.1 validation: v0.2 shape+cross-refs, then the six
     decisions plus the v0.3.1 event/cohort refinements. Returns
     (errors, warnings, notes)."""
-    errors = v02.validate_shape(doc, schema)
-    if errors:
-        return errors, [], []
     errors: list[str] = []
+    validate_v032_legacy_enums(doc, errors)
+    shape_errors = v02.validate_shape(doc, schema)
+    errors.extend(shape_errors)
+    if shape_errors:
+        return errors, [], []
     warnings: list[str] = []
     notes: list[str] = []
     v02.validate_cross_references(doc, errors)
@@ -495,6 +497,7 @@ def validate_v03(doc: dict, schema: dict) -> tuple[list[str], list[str],
     validate_v03_sources(doc, errors, warnings)
     validate_v03_duplicates(doc, errors, notes)
     validate_v03_cohorts_and_provisions(doc, errors)
+    validate_v032_semantics(doc, errors, warnings, notes)
     return errors, warnings, notes
 
 
@@ -660,15 +663,26 @@ class PublicConfigV03:
     excerpts: bool = True
 
 
-def build_public_views_v03(doc: dict, cfg: PublicConfigV03) -> dict:
+def build_public_views_v03(doc: dict, cfg: PublicConfigV03,
+                           qc_holds: set[str] | None = None) -> dict:
     """Gated reader views for a v0.3 document. Extends the v0.2 gating:
     provisions additionally expose their cohort-applicability display, and
     score observations are ALWAYS withheld (no authoritative codebook,
-    no composite) with the withheld count stated."""
+    no composite) with the withheld count stated. Q2: internal QC holds
+    (qc_holds, from a local-only workbook) withhold their versions even
+    when release.public_release_approved=true; the hold itself is never
+    exported."""
     base = v02.build_public_views(doc, v02.PublicConfig(
         document_links=cfg.document_links,
         downloads=cfg.downloads,
         excerpts=cfg.excerpts))
+    if qc_holds:
+        held = [r for r in base.get("records", []) if r["id"] in qc_holds]
+        if held:
+            base["records"] = [r for r in base["records"]
+                               if r["id"] not in qc_holds]
+            base["withheld_count"] = base.get("withheld_count", 0) + \
+                len(held)
     base["score_observations"] = {
         "shown": 0,
         "withheld_count": len(doc.get("score_observations", [])),
@@ -723,6 +737,177 @@ def build_public_views_v03(doc: dict, cfg: PublicConfigV03) -> dict:
             for sv in record["sources"]:
                 sv["archived_url"] = None
     return base
+
+
+# ---------------------------------------------------------------------------
+# v0.3.2 semantic layer (schema_version "0.3.2-draft") — the eight resolved
+# questions Q2/Q4/Q7/Q10–Q13/Q15 as semantic checks on top of shape.
+# ---------------------------------------------------------------------------
+
+V032 = "0.3.2-draft"
+
+# Removed enum values: migration is allowed ONLY with evidence, never by
+# string mapping alone. The validator rejects them with guidance.
+LEGACY_ENUM_RULES = {
+    ("version", "authority_status", "announcement_attested"):
+        "removed in v0.3.2: migrate to authority_status=approved + "
+        "source_status=attested_unrecovered ONLY with authority evidence; "
+        "never by string mapping alone",
+    ("version", "source_status", "draft_only"):
+        "removed in v0.3.2: a recovered draft is authority_status=draft + "
+        "source_status=original_recovered; migrate only after checking "
+        "evidence",
+    ("organization", "issuer_type", "unreviewed"):
+        "removed in v0.3.2: use issuer_type=null with "
+        "identity_review.state=unreviewed; review state is not a type",
+}
+
+
+def validate_v032_legacy_enums(doc: dict, errors: list[str]) -> None:
+    """Reject removed v0.3.1 enum values with evidence-based migration
+    guidance instead of silently re-mapping strings."""
+    if doc.get("schema_version") != V032:
+        return
+    for v in doc.get("versions", []):
+        for field, value in (("authority_status", v.get("authority_status")),
+                             ("source_status", v.get("source_status"))):
+            rule = LEGACY_ENUM_RULES.get(("version", field, value))
+            if rule:
+                errors.append(f"version {v['id']}: {field}={value!r} — {rule}")
+    for o in doc.get("organizations", []):
+        rule = LEGACY_ENUM_RULES.get(("organization", "issuer_type",
+                                      o.get("issuer_type")))
+        if rule:
+            errors.append(f"organization {o['id']}: issuer_type="
+                          f"{o.get('issuer_type')!r} — {rule}")
+
+
+def validate_v032_semantics(doc: dict, errors: list[str],
+                            warnings: list[str], notes: list[str]) -> None:
+    """v0.3.2 rules, applied only to 0.3.2-draft documents."""
+    if doc.get("schema_version") != V032:
+        return
+    family_ids = {f["id"] for f in doc.get("families", [])}
+    version_ids = {v["id"] for v in doc.get("versions", [])}
+    man_by_id = {m["id"]: m for m in doc.get("manifestations", [])}
+    mans_by_version: dict[str, list[dict]] = {}
+    for m in doc.get("manifestations", []):
+        if m.get("version_id"):
+            mans_by_version.setdefault(m["version_id"], []).append(m)
+
+    for m in doc.get("manifestations", []):
+        mid = m["id"]
+        # Q15: version_id=null is permitted ONLY for a family-bound
+        # unrecovered lead; every other role requires a version binding
+        if m.get("version_id") is None:
+            if m["role"] != "unrecovered_lead":
+                errors.append(
+                    f"manifestation {mid}: version_id null is allowed only "
+                    f"for role=unrecovered_lead (Q15); role {m['role']!r} "
+                    f"requires a version binding")
+            elif not m.get("family_id"):
+                errors.append(
+                    f"manifestation {mid}: null version_id requires "
+                    f"family_id (family-bound unrecovered lead)")
+            elif m["family_id"] not in family_ids:
+                errors.append(f"manifestation {mid}: unknown family_id "
+                              f"{m['family_id']}")
+        # Q7: captured issuer HTML defaults to unreviewed rights; a public
+        # URL permits at most a reviewed link-only route, never
+        # redistribution of captured HTML
+        if m["role"] == "issuer_html_capture":
+            if m["rights_status"] == "public_redistribution_approved":
+                errors.append(
+                    f"manifestation {mid}: captured issuer HTML can never "
+                    f"be public_redistribution_approved; link-only after "
+                    f"URL and link-rights review at most (Q7)")
+            elif m["rights_status"] == "link_only_approved" and \
+                    m["review"]["state"] not in v02.PASS_REVIEW_STATES:
+                warnings.append(
+                    f"manifestation {mid}: link_only_approved is an "
+                    f"affirmative decision; review state "
+                    f"{m['review']['state']!r} does not yet support it")
+        # Q11: physical_pages is a leaf COUNT, null for HTML
+        if m["format"] == "html" and m.get("physical_pages") is not None:
+            warnings.append(f"manifestation {mid}: physical_pages must be "
+                            f"null for HTML (count of physical PDF leaves)")
+
+    for v in doc.get("versions", []):
+        vid = v["id"]
+        # Q4: authority standing and source recovery are orthogonal
+        if v["authority_status"] in ("issued", "approved") and \
+                v["source_status"] == "attested_unrecovered" and \
+                not (v["review"].get("note")):
+            warnings.append(
+                f"version {vid}: approved/issued + attested_unrecovered "
+                f"needs a provenance/review caveat note (no operative "
+                f"bytes recovered)")
+        # Q4: a true contradiction between evidence claims is a QC
+        # conflict, never silently overwritten
+        if v["authority_status"] in ("issued", "approved"):
+            for m in mans_by_version.get(vid, []):
+                ev = (m.get("authority_evidence") or "").lower()
+                if "draft" in ev:
+                    errors.append(
+                        f"version {vid}: authority contradiction — "
+                        f"authority_status={v['authority_status']!r} but "
+                        f"manifestation {m['id']} evidence says draft; "
+                        f"routed to QC conflict (review.state=conflicted), "
+                        f"never silently overwritten")
+        # Q10: languages arrays; manifestation languages should be a subset
+        vlangs = set(v.get("languages", []))
+        if not vlangs:
+            notes.append(f"version {vid}: languages empty = language "
+                         f"unreviewed")
+        for m in mans_by_version.get(vid, []):
+            extra = set(m.get("languages", [])) - vlangs
+            if extra:
+                warnings.append(
+                    f"manifestation {m['id']}: languages {sorted(extra)} "
+                    f"not present in version {vid} languages "
+                    f"{sorted(vlangs)}")
+
+    for o in doc.get("organizations", []):
+        # Q12: null issuer type carries review state in identity_review
+        if o.get("issuer_type") is None and \
+                o.get("identity_review", {}).get("state") != "unreviewed":
+            warnings.append(
+                f"organization {o['id']}: issuer_type null should pair with "
+                f"identity_review.state=unreviewed")
+
+    for p in doc.get("provisions", []):
+        # Q11: anchor starts with the physical page and preserves the
+        # printed label when different
+        anchor = p.get("anchor", "")
+        if "printed p." in anchor and "physical p." not in anchor:
+            warnings.append(
+                f"provision {p['id']}: anchor cites a printed page label "
+                f"without the physical page; anchors start with physical "
+                f"page (e.g. 'physical p.56; printed p.53')")
+
+    rel = doc.get("release", {})
+    # Q13: as_of is the content/review cutoff, published_at the separate
+    # publication timestamp; a later publication never moves as_of
+    as_of, published_at = rel.get("as_of"), rel.get("published_at")
+    if as_of and published_at and str(as_of) > published_at[:10]:
+        errors.append(
+            f"release: as_of {as_of} is after published_at "
+            f"{published_at}; contents cannot be described through a date "
+            f"after the release's own publication")
+
+
+def load_internal_qc_holds(path: Path) -> set[str]:
+    """Read a LOCAL-ONLY internal QC workbook column
+    (version_id, public_import_status) and return the held version ids.
+    Q2: the hold is internal and independent of release approval/rights;
+    the workbook itself is never committed to this public repository."""
+    import csv
+    holds: set[str] = set()
+    with open(path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            if (row.get("public_import_status") or "").strip() == "hold":
+                holds.add(row["version_id"].strip())
+    return holds
 
 
 # ---------------------------------------------------------------------------
