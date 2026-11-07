@@ -1,0 +1,517 @@
+{
+  "schema_version": "0.3-draft",
+  "release": {
+    "release_id": "SYNTHETIC-EXCHANGE-V03-DEMO-001",
+    "as_of": {
+      "type": "other",
+      "value": "2026-11-08",
+      "precision": "day",
+      "status": "verified"
+    },
+    "scope_note": "SYNTHETIC DEMONSTRATION EXCHANGE v0.3. Every record is a synthetic structural scenario for contract testing; no original policy file or excerpt is imported, nothing is approved public data, and all public download/excerpt gates are CLOSED (public_release_approved: false). Regression scenarios model the structure of Colombia Resolution 0777 (2022) and a UCT repository-policy 2014/2016/2020 genealogy without importing real text.",
+    "public_release_approved": false
+  },
+  "countries": [
+    {
+      "code": "CO",
+      "label": "Colombia",
+      "frame_description": "SYNTHETIC regression scenario only: structural model of a Colombian ministerial resolution. No real corpus record, excerpt or prevalence claim."
+    },
+    {
+      "code": "ZA",
+      "label": "South Africa",
+      "frame_description": "SYNTHETIC regression scenario only: structural model of a university repository-policy version genealogy. No real corpus record, excerpt or prevalence claim."
+    },
+    {
+      "code": "XA",
+      "label": "Republic of Arcadia",
+      "frame_description": "SYNTHETIC. Fictional state (ISO user-assigned code XA) hosting the fictional legal mirror used to exercise duplicate-byte alias rules."
+    }
+  ],
+  "organizations": [
+    {
+      "id": "O-CO-MINCIENCIAS",
+      "name": "Ministerio de Ciencia, Tecnología e Innovación (MinCiencias)",
+      "country_code": "CO",
+      "issuer_type": "national_government",
+      "identity_review": {"state": "analyst_checked"}
+    },
+    {
+      "id": "O-ZA-UCT",
+      "name": "University of Cape Town",
+      "country_code": "ZA",
+      "issuer_type": "rpo",
+      "identity_review": {"state": "analyst_checked"}
+    },
+    {
+      "id": "O-XA-MIRROR",
+      "name": "Synthetic Legal Mirror Service",
+      "country_code": "XA",
+      "issuer_type": "other",
+      "identity_review": {"state": "unreviewed", "note": "Mirror provenance pending corroboration against the official host."}
+    }
+  ],
+  "families": [
+    {
+      "id": "F-CO-RES0777",
+      "issuer_id": "O-CO-MINCIENCIAS",
+      "family_label": "SYNTHETIC scenario: Colombian ministerial resolution family (Resolution 0777 of 2022, structural model only)"
+    },
+    {
+      "id": "F-ZA-UCT-REPO",
+      "issuer_id": "O-ZA-UCT",
+      "family_label": "SYNTHETIC scenario: UCT repository policy family (2014 label / amended 2014-2016 text / 2020 revision genealogy model)"
+    }
+  ],
+  "versions": [
+    {
+      "id": "V-CO-RES-0777-2022",
+      "family_id": "F-CO-RES0777",
+      "title_original": "Resolución 0777 de 2022 [SYNTHETIC scenario record — no original text imported]",
+      "title_english": null,
+      "language": "es",
+      "instrument_function": "other",
+      "authority_status": "issued",
+      "source_status": "mirror_only",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": "2022-08-03",
+          "precision": "day",
+          "status": "verified",
+          "evidence_manifestation_id": "M-CO-0777-RES-MIRROR",
+          "physical_anchor": "signature block",
+          "note": "Signed 2022-08-03. Signature date is distinct from gazette publication and from any attachment-update timestamp."
+        },
+        {
+          "type": "published",
+          "value": "2022-12-09",
+          "precision": "day",
+          "status": "verified",
+          "evidence_manifestation_id": "M-CO-0777-RES-MIRROR",
+          "physical_anchor": "Diario Oficial, edición 52.243",
+          "note": "Gazette facsimile issue 52.243 dated 2022-12-09. Mirror provenance; official-host corroboration pending."
+        },
+        {
+          "type": "other",
+          "value": null,
+          "precision": "unknown",
+          "status": "unknown",
+          "evidence_manifestation_id": null,
+          "physical_anchor": null,
+          "note": "Annex attachment-update timestamp on the official host; pending corroboration, kept distinct from signature and gazette publication."
+        }
+      ],
+      "scope_note": "SYNTHETIC structural model of Colombia Resolution 0777 of 2022: resolution and annex are ONE version. Instrument function not asserted.",
+      "review": {
+        "state": "provisionally_reviewed",
+        "extent": "dates and structure only; no excerpt review",
+        "reviewer": null,
+        "review_date": null,
+        "note": "Mirror provenance; official-host corroboration pending."
+      },
+      "issuer_ids": ["O-CO-MINCIENCIAS"],
+      "cohorts": [
+        {
+          "id": "C-CO-0777-AWARD",
+          "applies_to": {
+            "event_type": "award_made",
+            "object_scope": "research awards funded under the resolution",
+            "event_details": "SYNTHETIC cohort placeholder; threshold applies to awards made, not to a general effective date",
+            "issuer_program": "SYNTHETIC programme placeholder"
+          },
+          "start": {
+            "type": "cohort_start",
+            "value": "2022-12-09",
+            "precision": "day",
+            "status": "verified",
+            "evidence_manifestation_id": "M-CO-0777-RES-MIRROR",
+            "physical_anchor": "transitory provisions (synthetic anchor)",
+            "note": "Cohort threshold for awards made; never a general effective date."
+          },
+          "end": {
+            "type": "cohort_end",
+            "value": null,
+            "precision": "unknown",
+            "status": "not_applicable",
+            "evidence_manifestation_id": null,
+            "physical_anchor": null,
+            "note": "Open-ended cohort."
+          },
+          "exceptions": null,
+          "review": {"state": "unreviewed"}
+        }
+      ],
+      "effective_date_interpretation": "promulgation_linked"
+    },
+    {
+      "id": "V-ZA-UCT-2014-LABEL",
+      "family_id": "F-ZA-UCT-REPO",
+      "title_original": "UCT repository policy, repository page labelled 2014 [SYNTHETIC scenario record]",
+      "title_english": null,
+      "language": "en",
+      "instrument_function": "repository_operation",
+      "authority_status": "unverified",
+      "source_status": "issuer_html_captured",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": null,
+          "precision": "unknown",
+          "status": "unknown",
+          "evidence_manifestation_id": "M-UCT-2014-HTML",
+          "physical_anchor": null,
+          "note": "No clean 2014 adoption or effective date may be inferred: the repository's 2014 label points to an amended 2014/2016 text."
+        }
+      ],
+      "scope_note": "SYNTHETIC genealogy fixture: the 2014 label is a mutable-page label, not a clean 2014 clause baseline.",
+      "review": {
+        "state": "conflicted",
+        "extent": "label vs hosted text",
+        "reviewer": null,
+        "review_date": null,
+        "note": "Label/text mismatch: page labelled 2014 hosts the amended 2014/2016 text (see V-ZA-UCT-2016-AMD)."
+      },
+      "issuer_ids": ["O-ZA-UCT"],
+      "cohorts": [],
+      "effective_date_interpretation": "unknown"
+    },
+    {
+      "id": "V-ZA-UCT-2016-AMD",
+      "family_id": "F-ZA-UCT-REPO",
+      "title_original": "UCT repository policy text hosted under the 2014 label, as amended 2014/2016 [SYNTHETIC scenario record]",
+      "title_english": null,
+      "language": "en",
+      "instrument_function": "repository_operation",
+      "authority_status": "unverified",
+      "source_status": "issuer_html_captured",
+      "dates": [
+        {
+          "type": "adopted",
+          "value": null,
+          "precision": "unknown",
+          "status": "unknown",
+          "evidence_manifestation_id": "M-UCT-2016-HTML",
+          "physical_anchor": null,
+          "note": "Amended 2014/2016 text; no clean baseline date may be inferred for the 2014 label."
+        }
+      ],
+      "scope_note": "SYNTHETIC: the text actually served under the repository's 2014 label.",
+      "review": {
+        "state": "provisionally_reviewed",
+        "extent": "page capture only",
+        "reviewer": null,
+        "review_date": null,
+        "note": "Hosted under the 2014 label; treated as amended 2014/2016 text."
+      },
+      "issuer_ids": ["O-ZA-UCT"],
+      "cohorts": [],
+      "effective_date_interpretation": "unknown"
+    },
+    {
+      "id": "V-ZA-UCT-2020",
+      "family_id": "F-ZA-UCT-REPO",
+      "title_original": "UCT repository policy, 2020 revision [SYNTHETIC scenario record]",
+      "title_english": null,
+      "language": "en",
+      "instrument_function": "repository_operation",
+      "authority_status": "issued",
+      "source_status": "issuer_html_captured",
+      "dates": [
+        {
+          "type": "other",
+          "value": null,
+          "precision": "unknown",
+          "status": "unreviewed",
+          "evidence_manifestation_id": "M-UCT-2020-PDF",
+          "physical_anchor": null,
+          "note": "Revision date as displayed on the repository page; unreviewed."
+        }
+      ],
+      "scope_note": "SYNTHETIC: 2020 revision following the amended 2014/2016 text.",
+      "review": {"state": "provisionally_reviewed", "extent": "structure only"},
+      "issuer_ids": ["O-ZA-UCT"],
+      "cohorts": [],
+      "effective_date_interpretation": "unreviewed"
+    }
+  ],
+  "manifestations": [
+    {
+      "id": "M-CO-0777-RES-MIRROR",
+      "version_id": "V-CO-RES-0777-2022",
+      "role": "mirror",
+      "format": "pdf",
+      "language": "es",
+      "source_url": "https://mirror.example.org/synthetic/res0777-2022.pdf",
+      "sha256": "d23c52fe6218a3ce15bc985c9d67ad32825d5c77955cdc5060bc90fafb120a6b",
+      "physical_pages": 12,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "unreviewed", "note": "Mirror provenance pending official-host corroboration."},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Mirror copy of the resolution; gazette facsimile issue 52.243 (2022-12-09) cited for publication date.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": [
+        {
+          "url": "https://archive.example.org/snap/co-res0777",
+          "captured_at": null,
+          "snapshot_sha256": null,
+          "capture_status": "url_only",
+          "note": "Unverified archive lead; not treated as a time-stable original."
+        }
+      ]
+    },
+    {
+      "id": "M-CO-0777-RES-MIRROR-B",
+      "version_id": "V-CO-RES-0777-2022",
+      "role": "alternate_manifestation",
+      "format": "pdf",
+      "language": "es",
+      "source_url": "https://mirror-b.example.org/synthetic/res0777-2022.pdf",
+      "sha256": "d23c52fe6218a3ce15bc985c9d67ad32825d5c77955cdc5060bc90fafb120a6b",
+      "physical_pages": 12,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "unreviewed"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": null,
+      "archived_url": null,
+      "duplicate_of_manifestation_id": "M-CO-0777-RES-MIRROR",
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-CO-0777-RES-OFFICIAL-LEAD",
+      "version_id": "V-CO-RES-0777-2022",
+      "role": "unrecovered_lead",
+      "format": "pdf",
+      "language": "es",
+      "source_url": "https://www.minciencias.gov.co/",
+      "sha256": null,
+      "physical_pages": null,
+      "retrieved_at": null,
+      "rights_status": "unreviewed",
+      "review": {"state": "unreviewed", "note": "Official-host corroboration pending; issuer site root only, no path or excerpt imported."},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Official issuer host; corroboration of the mirror copy against this host is pending.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-CO-0777-ANNEX",
+      "version_id": "V-CO-RES-0777-2022",
+      "role": "ancillary",
+      "format": "pdf",
+      "language": "es",
+      "source_url": "https://mirror.example.org/synthetic/res0777-2022-anexo.pdf",
+      "sha256": "f3f87d89b450fe8d5ec2562d3d6afed326c77a95153c8511c3d684a7fb5ea75c",
+      "physical_pages": 4,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "internal_only",
+      "review": {"state": "unreviewed"},
+      "component_of_manifestation_id": "M-CO-0777-RES-MIRROR",
+      "authority_evidence": "Annex of Resolution 0777; resolution and annex are ONE version.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-UCT-2014-HTML",
+      "version_id": "V-ZA-UCT-2014-LABEL",
+      "role": "issuer_html_capture",
+      "format": "html",
+      "language": "en",
+      "source_url": "https://www.uct.ac.za/",
+      "sha256": "c2d8d796b85b20c57ccad76cf721329c1dc3a6c2f79f0d7a9becd6980a9e0f62",
+      "physical_pages": null,
+      "retrieved_at": "2024-03-01",
+      "rights_status": "link_only_approved",
+      "review": {"state": "analyst_checked"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Mutable issuer page; live URL is not a time-stable original.",
+      "archived_url": "https://archive.example.org/snap/uct-repo-policy",
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": [
+        {
+          "url": "https://archive.example.org/snap/uct-repo-policy",
+          "captured_at": "2024-03-01T00:00:00Z",
+          "snapshot_sha256": null,
+          "capture_status": "issuer_attested",
+          "note": "Archived snapshot corroborates archived_url."
+        }
+      ]
+    },
+    {
+      "id": "M-UCT-2016-HTML",
+      "version_id": "V-ZA-UCT-2016-AMD",
+      "role": "issuer_html_capture",
+      "format": "html",
+      "language": "en",
+      "source_url": "https://www.uct.ac.za/",
+      "sha256": "75a9d314d5b3861482b10d2dcb12a6354f24e0b5ad157d84cfadc3f14585ba1f",
+      "physical_pages": null,
+      "retrieved_at": "2024-03-01",
+      "rights_status": "link_only_approved",
+      "review": {"state": "provisionally_reviewed"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": "Repository page labelled 2014 hosts this amended 2014/2016 text; no clean 2014 clause baseline may be inferred.",
+      "archived_url": null,
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": []
+    },
+    {
+      "id": "M-UCT-2020-PDF",
+      "version_id": "V-ZA-UCT-2020",
+      "role": "controlling_original",
+      "format": "pdf",
+      "language": "en",
+      "source_url": "https://www.uct.ac.za/",
+      "sha256": "34db28bff42bc475830ec24148da642697eef64a55411e8c112f7893a3402e84",
+      "physical_pages": 8,
+      "retrieved_at": "2026-11-08",
+      "rights_status": "link_only_approved",
+      "review": {"state": "analyst_checked"},
+      "component_of_manifestation_id": null,
+      "authority_evidence": null,
+      "archived_url": "https://archive.example.org/snap/uct-repo-policy-2020",
+      "duplicate_of_manifestation_id": null,
+      "archive_snapshots": [
+        {
+          "url": "https://archive.example.org/snap/uct-repo-policy-2020",
+          "captured_at": "2026-11-08T00:00:00Z",
+          "snapshot_sha256": "34db28bff42bc475830ec24148da642697eef64a55411e8c112f7893a3402e84",
+          "capture_status": "verified_bytes",
+          "note": "Verified-byte snapshot of the 2020 revision."
+        }
+      ]
+    }
+  ],
+  "provisions": [
+    {
+      "id": "P-CO-0777-ART3",
+      "version_id": "V-CO-RES-0777-2022",
+      "manifestation_id": "M-CO-0777-RES-MIRROR",
+      "original_excerpt": "[SYNTHETIC PLACEHOLDER — no original excerpt imported pending rights review]",
+      "translation_english": null,
+      "anchor": "Artículo 3",
+      "actor": "Ministerio de Ciencia, Tecnología e Innovación",
+      "action": "establece la vigencia",
+      "object": "la resolución",
+      "scope": null,
+      "modality": "obligatorio",
+      "condition": "desde su publicación en el Diario Oficial (condición sintética)",
+      "exception": null,
+      "code_status": "provisional",
+      "review": {"state": "provisionally_reviewed", "extent": "clause structure only"},
+      "excerpt_rights_status": "internal_only",
+      "function_relation": "policy_clause",
+      "cohort_ids": ["C-CO-0777-AWARD"],
+      "cohort_applicability_status": "subset"
+    },
+    {
+      "id": "P-UCT-2016-CLAUSE",
+      "version_id": "V-ZA-UCT-2016-AMD",
+      "manifestation_id": "M-UCT-2016-HTML",
+      "original_excerpt": "[SYNTHETIC PLACEHOLDER — no original excerpt imported pending rights review]",
+      "translation_english": null,
+      "anchor": "synthetic clause anchor",
+      "actor": null,
+      "action": null,
+      "object": null,
+      "scope": null,
+      "modality": null,
+      "condition": null,
+      "exception": null,
+      "code_status": "unreviewed",
+      "review": {"state": "unreviewed"},
+      "excerpt_rights_status": "internal_only",
+      "function_relation": "unreviewed",
+      "cohort_ids": [],
+      "cohort_applicability_status": "unknown"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "R-UCT-2014-2016",
+      "earlier_version_id": "V-ZA-UCT-2014-LABEL",
+      "later_version_id": "V-ZA-UCT-2016-AMD",
+      "type": "amendment",
+      "evidence_manifestation_id": "M-UCT-2016-HTML",
+      "anchor": "repository page labelled 2014 hosting the amended text",
+      "review": {"state": "provisionally_reviewed", "note": "Label points to amended 2014/2016 text; not a clean 2014 baseline."}
+    },
+    {
+      "id": "R-UCT-2016-2020",
+      "earlier_version_id": "V-ZA-UCT-2016-AMD",
+      "later_version_id": "V-ZA-UCT-2020",
+      "type": "explicit_replacement",
+      "evidence_manifestation_id": "M-UCT-2020-PDF",
+      "anchor": "2020 revision (synthetic anchor)",
+      "review": {"state": "analyst_checked"}
+    }
+  ],
+  "score_definitions": [
+    {
+      "id": "SD-SYNTH-DIM-01",
+      "label": "SYNTHETIC placeholder dimension — the authoritative ten-score codebook has not been supplied; no dimension labels are hardcoded",
+      "codebook_version": "not-supplied",
+      "scale_id": "SCALE-SYNTH-01",
+      "instrument_functions": ["repository_operation", "other"],
+      "description": "Placeholder to exercise referential integrity of score_observations only. No composite is calculated from these."
+    }
+  ],
+  "score_observations": [
+    {
+      "id": "SO-SYNTH-01",
+      "version_id": "V-CO-RES-0777-2022",
+      "dimension_id": "SD-SYNTH-DIM-01",
+      "scale_id": "SCALE-SYNTH-01",
+      "status": "unreviewed",
+      "value": null,
+      "source_scope": "SYNTHETIC: whole version, unreviewed",
+      "review_extent": "none",
+      "actor": null,
+      "action": null,
+      "object": null,
+      "condition": null,
+      "basis_provision_ids": ["P-CO-0777-ART3"],
+      "review": {"state": "unreviewed"},
+      "comparability_note": "Not comparable across versions until the authoritative codebook is supplied; no country composite computed."
+    },
+    {
+      "id": "SO-SYNTH-02",
+      "version_id": "V-ZA-UCT-2020",
+      "dimension_id": "SD-SYNTH-DIM-01",
+      "scale_id": "SCALE-SYNTH-01",
+      "status": "provisional_value",
+      "value": 2,
+      "source_scope": "SYNTHETIC: single clause",
+      "review_extent": "single provision",
+      "actor": null,
+      "action": null,
+      "object": null,
+      "condition": null,
+      "basis_provision_ids": [],
+      "review": {"state": "provisionally_reviewed"},
+      "comparability_note": "Provisional; scale anchors undefined pending the authoritative codebook."
+    },
+    {
+      "id": "SO-SYNTH-03",
+      "version_id": "V-ZA-UCT-2014-LABEL",
+      "dimension_id": "SD-SYNTH-DIM-01",
+      "scale_id": "SCALE-SYNTH-01",
+      "status": "conflicted",
+      "value": null,
+      "source_scope": "SYNTHETIC: label/text mismatch on the 2014 page",
+      "review_extent": "page capture only",
+      "actor": null,
+      "action": null,
+      "object": null,
+      "condition": null,
+      "basis_provision_ids": [],
+      "review": {"state": "conflicted"},
+      "comparability_note": "Conflicted because the 2014 label hosts amended text; excluded from any comparison."
+    }
+  ]
+}

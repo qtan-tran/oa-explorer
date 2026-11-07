@@ -51,6 +51,36 @@ decision). The data contract is a DRAFT pending corpus-team ratification.
   with the v0.1→v0.2 migration note and 15 open questions for the
   corpus thread (`docs/plans/2026-11-08-exchange-v0.2-slice.md`).
   Nothing pushed, published or deployed; no real data touched.
+- Session 4 (2026-11-08): v0.3 exchange-contract draft implementing the
+  six owner-reviewed design decisions, synthetic fixtures only. Added:
+  draft v0.3 schema attached verbatim (`contract/exchange/`,
+  `0.3-draft`, not ratified; v0.2 kept for migration),
+  `pipeline/exchange_v03_lib.py` (+ CLI), `synthetic/exchange_v03.json`
+  (Colombia Resolution 0777 and UCT 2014/2016/2020 genealogy as
+  SYNTHETIC structural regression cases; `public_release_approved:
+  false`, no original files/excerpts), tests 24–27 (52 new; 203 total,
+  all passing) and `docs/plans/2026-11-08-exchange-v0.3-slice.md` with
+  the v0.2→v0.3 migration notes, resolved questions Q1/Q3/Q5/Q6/Q8/Q9/Q14
+  and unresolved fields (Q2/Q4/Q7/Q10–Q13/Q15 plus the ten-score
+  codebook remain open). Nothing pushed, published or deployed; no real
+  data touched; public download/excerpt/score gates closed.
+- Session 5 (2026-11-08): v0.3.1 exchange-contract draft, synthetic only.
+  Attached `roara_contract_v0.3.1.schema.json` verbatim (`0.3.1-draft`,
+  not ratified). `exchange_v03_lib.py` is version-aware: publication vs
+  promulgation are distinct source events (`publication_linked` vs
+  `promulgation_linked`; disagreeing event dates preserved, unclear
+  trigger = conflict error); public archive links need verified-bytes
+  snapshots plus link-rights/review gates; unknown-start cohorts are not
+  negative-infinity starts and unbounded-supported vs unknown ends are
+  distinct; score actor/action are policy actor/evaluated action (null
+  when mixed); attested-but-unrecovered leads (synthetic UPTC Agreement
+  2/2026 model) stay out of comparison and public views. New synthetic
+  fixture `exchange_v031.json` (CO Resolution 0777 as publication_linked,
+  BRIN 12/2023 as promulgation_linked); tests 28–30 (27 new; 230 total,
+  all passing); `docs/plans/2026-11-08-exchange-v0.3.1-slice.md` with the
+  schema-delta/contradiction check, test delta and the eight open
+  questions Q2/Q4/Q7/Q10–Q13/Q15 verbatim. Nothing published or deployed;
+  no real data touched; gates closed.
 
 ## Non-negotiable rules
 
