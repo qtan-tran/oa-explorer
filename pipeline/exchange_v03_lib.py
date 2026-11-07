@@ -79,18 +79,29 @@ COHORT_APPLICABILITY_DISPLAY = {
 
 LEGACY_RETRIEVED_TYPE = "retrieved"
 
-# Decision 4 companion: promulgation-linked effectiveness may derive from a
-# gazette publication claim ("published") as well as an explicit
-# "promulgated" claim — e.g. "in force upon publication in the official
-# gazette".
+# Decision (v0.3.1): "published" and "promulgated" are DIFFERENT source
+# events; neither automatically implies an effective date. The original's
+# explicit trigger selects which event the effective date derives from.
 LINKED_EFFECTIVE_CLAIM_TYPES = {
-    "promulgation_linked": ("promulgated", "published"),
+    "publication_linked": ("published",),
+    "promulgation_linked": ("promulgated",),
     "approval_linked": ("approved",),
 }
 LINKED_EFFECTIVE_LABEL = {
-    "promulgation_linked": "in force on promulgation / gazette publication",
+    "publication_linked": "in force on publication",
+    "promulgation_linked": "in force on promulgation",
     "approval_linked": "linked to approval date",
 }
+# Legacy v0.3-draft documents: promulgation linkage could still derive from
+# a gazette "published" claim; v0.3.1 separates the two events.
+LINKED_EFFECTIVE_CLAIM_TYPES_V03_LEGACY = {
+    "promulgation_linked": ("promulgated", "published"),
+    "approval_linked": ("approved",),
+}
+
+# Event types that are distinct source events whose dates must not be
+# conflated (published vs promulgated).
+EVENT_CLAIM_TYPES = ("published", "promulgated")
 
 
 # ---------------------------------------------------------------------------
@@ -117,7 +128,8 @@ def _check_unique(values: list, what: str, errors: list[str]) -> None:
         seen.add(v)
 
 
-def validate_v03_scores(doc: dict, errors: list[str]) -> None:
+def validate_v03_scores(doc: dict, errors: list[str],
+                        warnings: list[str]) -> None:
     """Decision 1: score definitions/observations are separate from
     provisions; referential integrity only — no labels hardcoded, no
     composite computed."""
@@ -161,6 +173,18 @@ def validate_v03_scores(doc: dict, errors: list[str]) -> None:
                     f"score observation {oid}: basis provision {pid} "
                     f"belongs to version {p['version_id']}, not "
                     f"{o['version_id']}")
+        # v0.3.1: actor/action are the POLICY actor and the evaluated
+        # action, not the analyst; null when the clause mixes actors or
+        # actions, with source_scope and basis provisions retaining the
+        # detail. A valued observation naming an actor/action without any
+        # basis provision loses its evidence trail.
+        if o["status"] in VALUE_STATUSES and \
+                (o.get("actor") is not None or o.get("action") is not None) \
+                and not o.get("basis_provision_ids"):
+            warnings.append(
+                f"score observation {oid}: actor/action set but no basis "
+                f"provision ids; retain source_scope and basis provisions "
+                f"for mixed clauses (actor/action must then be null)")
 
 
 def validate_v03_sources(doc: dict, errors: list[str],
@@ -174,17 +198,22 @@ def validate_v03_sources(doc: dict, errors: list[str],
         snap_urls = {s["url"] for s in snaps}
         archived = m.get("archived_url")
         if archived is not None:
-            corroborated = any(
-                s["url"] == archived
-                and s["capture_status"] in ("verified_bytes",
-                                            "issuer_attested")
-                for s in snaps)
-            if not corroborated:
+            matching = [s for s in snaps if s["url"] == archived]
+            if not matching:
                 errors.append(
-                    f"manifestation {mid}: archived_url {archived} is not "
-                    f"corroborated by a verified/issuer-attested "
-                    f"archive_snapshots entry; do not infer an archived "
-                    f"URL from the live source_url")
+                    f"manifestation {mid}: archived_url {archived} has no "
+                    f"archive_snapshots entry at all; do not infer an "
+                    f"archived URL from the live source_url")
+            elif not any(s["capture_status"] in ("verified_bytes",
+                                                 "issuer_attested")
+                         for s in matching):
+                # url_only / unreviewed snapshots: internal only, never a
+                # public archive link
+                warnings.append(
+                    f"manifestation {mid}: archived_url {archived} is "
+                    f"corroborated only by a non-verified snapshot "
+                    f"({sorted(s['capture_status'] for s in matching)}); "
+                    f"stays internal, never a public archive link")
         if m["role"] == "issuer_html_capture":
             if archived is None and not snaps:
                 warnings.append(
@@ -320,11 +349,24 @@ def validate_v03_dates(doc: dict, errors: list[str]) -> None:
                     f"recorded only as manifestation.retrieved_at")
 
 
+def _linked_types(doc: dict, interp: str) -> tuple[str, ...]:
+    legacy = doc.get("schema_version") == "0.3-draft"
+    table = (LINKED_EFFECTIVE_CLAIM_TYPES_V03_LEGACY if legacy
+             else LINKED_EFFECTIVE_CLAIM_TYPES)
+    return table.get(interp, ())
+
+
 def validate_v03_date_semantics(doc: dict, errors: list[str],
-                                warnings: list[str]) -> None:
-    """v0.3 date-claim invariants: like v0.2, but promulgation linkage
-    may derive from a gazette 'published' claim as well as 'promulgated',
-    and cohort thresholds never leak into the general effective date."""
+                                warnings: list[str],
+                                notes: list[str] | None = None) -> None:
+    """v0.3.1 date-claim invariants: published and promulgated are
+    distinct source events; if both are valued and disagree, both are
+    preserved and the effective date may only derive from the original's
+    explicit trigger (conflict if that trigger is unclear). Cohort
+    thresholds never leak into the general effective date; unknown-start
+    cohorts are not negative-infinity starts."""
+    if notes is None:
+        notes = []
     for v in doc["versions"]:
         vid = v["id"]
         valued_effective: list[dict] = []
@@ -352,19 +394,39 @@ def validate_v03_date_semantics(doc: dict, errors: list[str],
         if interp == "explicit" and not valued_effective:
             errors.append(f"{vid}: effective_date_interpretation "
                           f"'explicit' but no valued effective claim")
-        if interp in LINKED_EFFECTIVE_CLAIM_TYPES:
+        linked = _linked_types(doc, interp) if interp else ()
+        if linked:
             if valued_effective:
                 errors.append(
                     f"{vid}: effective_date_interpretation {interp!r} "
                     f"conflicts with an explicit valued effective claim; "
                     f"use 'explicit'")
             if not any(c.get("value")
-                       for ct in LINKED_EFFECTIVE_CLAIM_TYPES[interp]
+                       for ct in linked
                        for c in claims_by_type.get(ct, [])):
                 errors.append(f"{vid}: interpretation {interp!r} but no "
                               f"valued claim of type "
-                              f"{' or '.join(LINKED_EFFECTIVE_CLAIM_TYPES[interp])} "
-                              f"to derive from")
+                              f"{' or '.join(linked)} to derive from")
+        # distinct source events: published vs promulgated
+        event_vals = {et: [c.get("value") for c in claims_by_type.get(et, [])
+                           if c.get("value")] for et in EVENT_CLAIM_TYPES}
+        if event_vals["published"] and event_vals["promulgated"] and \
+                set(event_vals["published"]) != set(event_vals["promulgated"]):
+            if interp in ("publication_linked", "promulgation_linked",
+                          "explicit"):
+                notes.append(
+                    f"{vid}: published {event_vals['published']} and "
+                    f"promulgated {event_vals['promulgated']} disagree; "
+                    f"both preserved; effective derived only from the "
+                    f"explicit trigger {interp!r}")
+            else:
+                errors.append(
+                    f"{vid}: published {event_vals['published']} and "
+                    f"promulgated {event_vals['promulgated']} disagree but "
+                    f"the explicit trigger is unclear "
+                    f"(effective_date_interpretation={interp!r}); declare "
+                    f"'publication_linked'/'promulgation_linked' or mark "
+                    f"'conflicted'")
         if interp == "cohort_only":
             if valued_effective:
                 errors.append(
@@ -375,12 +437,36 @@ def validate_v03_date_semantics(doc: dict, errors: list[str],
                 errors.append(f"{vid}: interpretation 'cohort_only' but "
                               f"the version has no cohorts")
         for co in v.get("cohorts", []):
-            if not co["start"].get("value") and \
-                    co["start"].get("status") not in ("unknown", "unreviewed"):
-                errors.append(f"{vid}: cohort {co['id']} has neither a "
-                              f"start value nor an unknown/unreviewed "
-                              f"status; a cohort must begin somewhere or "
-                              f"be declared unknown")
+            start = co["start"]
+            if not start.get("value"):
+                if start.get("status") not in ("unknown", "unreviewed"):
+                    errors.append(
+                        f"{vid}: cohort {co['id']} has neither a start "
+                        f"value nor an unknown/unreviewed status; an "
+                        f"unknown start is not a negative-infinity start")
+                if start.get("precision") != "unknown":
+                    errors.append(
+                        f"{vid}: cohort {co['id']} start without value "
+                        f"must have precision 'unknown'")
+            end = co["end"]
+            if end.get("value") is None:
+                # supported unbounded end (status not_applicable) vs
+                # unknown end (status unknown/unreviewed)
+                if end.get("status") == "not_applicable":
+                    notes.append(
+                        f"{vid}: cohort {co['id']} has a supported "
+                        f"unbounded end (explicitly no upper bound)")
+                elif end.get("status") in ("unknown", "unreviewed"):
+                    notes.append(
+                        f"{vid}: cohort {co['id']} end is UNKNOWN, not "
+                        f"unbounded; excluded from definite date-filtered "
+                        f"claims")
+                else:
+                    errors.append(
+                        f"{vid}: cohort {co['id']} end has no value but "
+                        f"status {end.get('status')!r}; use "
+                        f"not_applicable (supported unbounded) or "
+                        f"unknown/unreviewed")
         if not valued_effective and interp is None and v.get("cohorts"):
             warnings.append(f"{vid}: has cohorts but neither an effective "
                             f"claim nor an effective_date_interpretation")
@@ -388,8 +474,9 @@ def validate_v03_date_semantics(doc: dict, errors: list[str],
 
 def validate_v03(doc: dict, schema: dict) -> tuple[list[str], list[str],
                                                    list[str]]:
-    """Full v0.3 validation: v0.2 shape+cross-refs, then the six
-    decisions. Returns (errors, warnings, notes)."""
+    """Full v0.3/v0.3.1 validation: v0.2 shape+cross-refs, then the six
+    decisions plus the v0.3.1 event/cohort refinements. Returns
+    (errors, warnings, notes)."""
     errors = v02.validate_shape(doc, schema)
     if errors:
         return errors, [], []
@@ -402,9 +489,9 @@ def validate_v03(doc: dict, schema: dict) -> tuple[list[str], list[str],
     # same-version duplicates additionally need an explicit alias, which
     # validate_v03_duplicates checks below.
     errors.extend(hash_errors)
-    validate_v03_date_semantics(doc, errors, warnings)
+    validate_v03_date_semantics(doc, errors, warnings, notes)
     validate_v03_dates(doc, errors)
-    validate_v03_scores(doc, errors)
+    validate_v03_scores(doc, errors, warnings)
     validate_v03_sources(doc, errors, warnings)
     validate_v03_duplicates(doc, errors, notes)
     validate_v03_cohorts_and_provisions(doc, errors)
@@ -436,11 +523,15 @@ class Effective:
     note: str = ""
 
 
-def resolve_effective_v03(version: dict) -> Effective:
+def resolve_effective_v03(version: dict,
+                          schema_version: str = "0.3.1-draft") -> Effective:
     """General effective date of a version. Only an explicit valued
     effective claim or a declared linked interpretation produces a date;
-    cohort boundaries are NEVER consulted. Promulgation linkage may
-    derive from a gazette 'published' claim as well as 'promulgated'."""
+    cohort boundaries are NEVER consulted. In v0.3.1, publication_linked
+    derives from the 'published' event and promulgation_linked from the
+    'promulgated' event — they are different source events. (Legacy
+    0.3-draft documents allowed promulgation linkage to derive from a
+    gazette 'published' claim.)"""
     eff = [c for c in version.get("dates", [])
            if c["type"] == "effective" and c.get("value")]
     if eff:
@@ -449,8 +540,11 @@ def resolve_effective_v03(version: dict) -> Effective:
                          "explicit effective date claim",
                          c.get("note") or "")
     interp = version.get("effective_date_interpretation")
-    if interp in LINKED_EFFECTIVE_CLAIM_TYPES:
-        for claim_type in LINKED_EFFECTIVE_CLAIM_TYPES[interp]:
+    legacy = schema_version == "0.3-draft"
+    table = (LINKED_EFFECTIVE_CLAIM_TYPES_V03_LEGACY if legacy
+             else LINKED_EFFECTIVE_CLAIM_TYPES)
+    if interp in table:
+        for claim_type in table[interp]:
             c = next((x for x in version.get("dates", [])
                       if x["type"] == claim_type and x.get("value")), None)
             if c:
@@ -460,6 +554,78 @@ def resolve_effective_v03(version: dict) -> Effective:
     return Effective(None, "unknown", "unknown", "",
                      next((c.get("note") for c in version.get("dates", [])
                            if c["type"] == "effective"), ""))
+
+
+# ---------------------------------------------------------------------------
+# v0.3.1: cohort start/end semantics — unknown start is not negative
+# infinity; supported unbounded end is distinct from an unknown end.
+# ---------------------------------------------------------------------------
+
+def cohort_definite_start(co: dict) -> bool:
+    """True only when the cohort has a valued start bound; an
+    unknown/unreviewed start must not be treated as valid from negative
+    infinity or included in definite date-filtered compliance claims."""
+    return bool(co["start"].get("value"))
+
+
+def cohorts_with_definite_start(version: dict) -> list[dict]:
+    return [c for c in version.get("cohorts", []) if cohort_definite_start(c)]
+
+
+def cohort_end_kind(co: dict) -> str:
+    """'bounded' (valued end), 'unbounded_supported' (null end with
+    status not_applicable — the original explicitly has no upper bound),
+    or 'unknown' (null end with status unknown/unreviewed)."""
+    end = co["end"]
+    if end.get("value") is not None:
+        return "bounded"
+    if end.get("status") == "not_applicable":
+        return "unbounded_supported"
+    return "unknown"
+
+
+# ---------------------------------------------------------------------------
+# v0.3.1: a PUBLIC archive link requires verified snapshot contents/date
+# plus the separate link-rights and review gates. A bare archived_url or
+# a url_only snapshot stays internal.
+# ---------------------------------------------------------------------------
+
+def verified_snapshot_for(m: dict, url: str) -> dict | None:
+    """The verified-bytes snapshot entry corroborating url, if any."""
+    for s in m.get("archive_snapshots", []):
+        if s["url"] == url and s["capture_status"] == "verified_bytes":
+            return s
+    return None
+
+
+def public_archive_link(m: dict) -> str | None:
+    """Archived URL that may appear in a PUBLIC view: requires a
+    verified-bytes snapshot (contents/date verified), link-level rights
+    and a passed review gate. Bare archived_url or url_only snapshots
+    return None (internal only)."""
+    url = m.get("archived_url")
+    if not url:
+        return None
+    if verified_snapshot_for(m, url) is None:
+        return None
+    if m["rights_status"] not in v02.PUBLIC_RIGHTS:
+        return None
+    if m["review"]["state"] not in v02.PASS_REVIEW_STATES:
+        return None
+    return url
+
+
+# ---------------------------------------------------------------------------
+# v0.3.1: attested-but-unrecovered leads (e.g. an issuer news item dating
+# adoption) must not enter main-version comparison or public views.
+# ---------------------------------------------------------------------------
+
+def comparison_eligible_versions(doc: dict) -> list[dict]:
+    """Versions eligible for comparison views: passed the review gate and
+    are not attested-but-unrecovered leads."""
+    return [v for v in doc["versions"]
+            if v["review"]["state"] in v02.PASS_REVIEW_STATES
+            and v["source_status"] != "attested_unrecovered"]
 
 
 def effective_display_v03(eff: Effective) -> str:
@@ -518,7 +684,24 @@ def build_public_views_v03(doc: dict, cfg: PublicConfigV03) -> dict:
     provs_by_version: dict[str, list[dict]] = {}
     for p in doc["provisions"]:
         provs_by_version.setdefault(p["version_id"], []).append(p)
+    mans_by_version: dict[str, list[dict]] = {}
+    for m in doc["manifestations"]:
+        if m.get("version_id"):
+            mans_by_version.setdefault(m["version_id"], []).append(m)
+    ver_by_id = {v["id"]: v for v in doc["versions"]}
+    sv = doc.get("schema_version", "0.3.1-draft")
     for record in base.get("records", []):
+        # recompute effective with v0.3.1 semantics (publication_linked
+        # derives from 'published', promulgation_linked from 'promulgated')
+        v = ver_by_id[record["id"]]
+        eff = resolve_effective_v03(v, schema_version=sv)
+        record["effective"] = {
+            "display": effective_display_v03(eff),
+            "value": eff.value,
+            "basis": eff.basis,
+            "status": eff.status,
+            "note": eff.note or None,
+        }
         # base provision views are sorted by provision id and were built
         # from the same id-sorted, gate-filtered list, so zip positionally
         visible = [p for p in sorted(provs_by_version.get(record["id"], []),
@@ -526,6 +709,19 @@ def build_public_views_v03(doc: dict, cfg: PublicConfigV03) -> dict:
                    if p["manifestation_id"] in pub_man_ids]
         for p, pv in zip(visible, record["provisions"]):
             pv["cohort_applicability"] = cohort_applicability_display(p)
+        # v0.3.1: a public archive link appears only with a verified-bytes
+        # snapshot plus link-rights and review gates (bare archived_url /
+        # url_only snapshots stay internal)
+        if cfg.document_links:
+            vis_mans = [m for m in sorted(mans_by_version.get(record["id"],
+                                                              []),
+                                          key=lambda x: x["id"])
+                        if v02._manifestation_is_public(m)]
+            for m, sv in zip(vis_mans, record["sources"]):
+                sv["archived_url"] = public_archive_link(m)
+        else:
+            for sv in record["sources"]:
+                sv["archived_url"] = None
     return base
 
 

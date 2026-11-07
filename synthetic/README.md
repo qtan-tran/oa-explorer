@@ -67,3 +67,24 @@ Every file in this directory is **entirely fictional demonstration data**.
 - Do not import this file as if it were a corpus release; it exists to
   exercise `pipeline/exchange_v03_lib.py` before any real data passes
   through it.
+
+## Exchange fixture (Session 5, v0.3.1 draft)
+
+- `exchange_v031.json` is the **synthetic demonstration exchange document**
+  for the draft v0.3.1 contract (`schema_version: 0.3.1-draft`): 6
+  versions, 9 manifestations (8 underlying after one duplicate-byte
+  alias), 2 provisions, 2 relationships, 1 placeholder score definition,
+  3 score observations. `public_release_approved` is **false** — all
+  public gates closed.
+- New structural scenarios: Colombia Resolution 0777 modelled as
+  `publication_linked` (signed 2022-08-03; Diario Oficial 52.243 published
+  2022-12-09, issuer-attested with gazette-mirror caveat; effective
+  provisionally 2022-12-09); BRIN Regulation 12/2023 modelled as
+  `promulgation_linked` (year-precision synthetic promulgation); UPTC
+  Agreement 2/2026 as an `attested_unrecovered` news lead (adoption
+  2026-01-29 issuer-attested; no verified PDF/annex, effective date,
+  clause or hash; excluded from comparison and public views); a
+  UPTC unknown-start cohort (not negative infinity; unknown end ≠
+  unbounded end).
+- All excerpts are `[SYNTHETIC PLACEHOLDER …]` strings; no original policy
+  file, excerpt or URL path is imported.

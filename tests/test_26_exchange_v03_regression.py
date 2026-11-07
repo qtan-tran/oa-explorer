@@ -56,9 +56,11 @@ class ColombiaResolution0777(unittest.TestCase):
                          "Diario Oficial, edición 52.243")
 
     def test_article_3_effective_on_publication(self):
+        # v0.3-draft fixture: promulgation linkage derived from the
+        # gazette 'published' claim (legacy behaviour)
         self.assertEqual(self.v["effective_date_interpretation"],
                          "promulgation_linked")
-        eff = x3.resolve_effective_v03(self.v)
+        eff = x3.resolve_effective_v03(self.v, schema_version="0.3-draft")
         self.assertEqual(eff.value, "2022-12-09")
         self.assertIn("promulgation", eff.basis)
         self.assertIn("2022-12-09", x3.effective_display_v03(eff))
@@ -66,7 +68,7 @@ class ColombiaResolution0777(unittest.TestCase):
     def test_effective_not_derived_from_cohort(self):
         # the award cohort starts on the same calendar day; the effective
         # basis must be gazette publication, not the cohort threshold
-        eff = x3.resolve_effective_v03(self.v)
+        eff = x3.resolve_effective_v03(self.v, schema_version="0.3-draft")
         self.assertNotIn("cohort", eff.basis.lower())
         co = self.v["cohorts"][0]
         self.assertEqual(co["applies_to"]["event_type"], "award_made")

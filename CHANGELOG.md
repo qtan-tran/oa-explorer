@@ -3,6 +3,33 @@
 All notable changes to this repository. Format: Keep a Changelog; versioning:
 the repository follows the plan's milestones, contract semver is separate.
 
+## [0.4.1] - 2026-11-08
+### Added (v0.3.1 exchange-contract draft: corpus decisions, synthetic only)
+- Draft exchange contract v0.3.1 (`contract/exchange/roara_contract_v0.3.1.schema.json`,
+  `0.3.1-draft`, attached verbatim; not ratified; adds `publication_linked`,
+  stricter cohort/archive/score descriptions). v0.3 schema retained.
+- `pipeline/exchange_v03_lib.py` is now version-aware: in `0.3.1-draft`
+  documents `publication_linked` derives only from `published` and
+  `promulgation_linked` only from `promulgated`; disagreeing event dates
+  are both preserved and only an explicit trigger may choose (unclear
+  trigger = error). Public archive links require a `verified_bytes`
+  snapshot plus link-rights and review gates (`url_only`/bare
+  `archived_url` stay internal). Unknown-start cohorts are excluded from
+  definite date-filtered claims; supported unbounded end
+  (`not_applicable`) distinguished from unknown end. Score actor/action
+  are the policy actor/evaluated action (null when mixed, basis
+  provisions retained). Attested-but-unrecovered leads are excluded
+  from comparison-eligible and public versions.
+- `synthetic/exchange_v031.json`: adds synthetic BRIN Regulation
+  12/2023 (promulgation_linked) and UPTC Agreement 2/2026
+  (attested_unrecovered lead, adoption 2026-01-29 issuer-attested only);
+  CO Resolution 0777 model switched to `publication_linked`.
+  `public_release_approved: false`; no original files or excerpts.
+- Tests 28–30 (27 new; 230 total, all passing).
+- `docs/plans/2026-11-08-exchange-v0.3.1-slice.md`: schema delta + contradiction
+  check (none found), test delta, unresolved fields, and the eight
+  still-open v0.2 questions verbatim (Q2, Q4, Q7, Q10–Q13, Q15).
+
 ## [0.4.0] - 2026-11-08
 ### Added (v0.3 exchange-contract draft: six corpus decisions, synthetic only)
 - Draft exchange contract v0.3 (`contract/exchange/roara_contract_v0.3.schema.json`,

@@ -64,6 +64,23 @@ decision). The data contract is a DRAFT pending corpus-team ratification.
   and unresolved fields (Q2/Q4/Q7/Q10–Q13/Q15 plus the ten-score
   codebook remain open). Nothing pushed, published or deployed; no real
   data touched; public download/excerpt/score gates closed.
+- Session 5 (2026-11-08): v0.3.1 exchange-contract draft, synthetic only.
+  Attached `roara_contract_v0.3.1.schema.json` verbatim (`0.3.1-draft`,
+  not ratified). `exchange_v03_lib.py` is version-aware: publication vs
+  promulgation are distinct source events (`publication_linked` vs
+  `promulgation_linked`; disagreeing event dates preserved, unclear
+  trigger = conflict error); public archive links need verified-bytes
+  snapshots plus link-rights/review gates; unknown-start cohorts are not
+  negative-infinity starts and unbounded-supported vs unknown ends are
+  distinct; score actor/action are policy actor/evaluated action (null
+  when mixed); attested-but-unrecovered leads (synthetic UPTC Agreement
+  2/2026 model) stay out of comparison and public views. New synthetic
+  fixture `exchange_v031.json` (CO Resolution 0777 as publication_linked,
+  BRIN 12/2023 as promulgation_linked); tests 28–30 (27 new; 230 total,
+  all passing); `docs/plans/2026-11-08-exchange-v0.3.1-slice.md` with the
+  schema-delta/contradiction check, test delta and the eight open
+  questions Q2/Q4/Q7/Q10–Q13/Q15 verbatim. Nothing published or deployed;
+  no real data touched; gates closed.
 
 ## Non-negotiable rules
 

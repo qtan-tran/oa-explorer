@@ -75,8 +75,8 @@ class D2SourceVsArchive(unittest.TestCase):
         m = find_man(doc, "M-UCT-2014-HTML")
         m["archived_url"] = "https://archive.example.org/snap/other"
         errors, _, _ = validate(doc)
-        self.assertTrue(any("archived_url" in e and "corroborated" in e
-                            for e in errors), errors)
+        self.assertTrue(any("archived_url" in e and "no archive_snapshots "
+                            "entry" in e for e in errors), errors)
 
     def test_archived_url_must_not_be_inferred_from_live_url(self):
         doc = load_exchange_v03_doc()
@@ -120,7 +120,7 @@ class D3TypedCohortTriggers(unittest.TestCase):
         # effective comes from gazette publication (2022-12-09) via
         # promulgation linkage; the cohort start shares the date value
         # here, so prove the basis is NOT the cohort
-        eff = x3.resolve_effective_v03(v)
+        eff = x3.resolve_effective_v03(v, schema_version="0.3-draft")
         self.assertNotIn("cohort", eff.basis.lower())
 
 
