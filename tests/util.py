@@ -186,3 +186,20 @@ def load_exchange_doc() -> dict:
 
 def load_exchange_schema() -> dict:
     return json.loads(EXCHANGE_SCHEMA.read_text(encoding="utf-8"))
+
+
+# --------------------------------------------------------------------------
+# Exchange-contract v0.3 fixture (Session 4: six design decisions)
+# --------------------------------------------------------------------------
+
+EXCHANGE_V03_INPUT = SYNTHETIC / "exchange_v03.json"
+EXCHANGE_V03_SCHEMA = CONTRACT / "exchange" / "roara_contract_v0.3.schema.json"
+
+
+def load_exchange_v03_doc() -> dict:
+    """Deep copy of the synthetic v0.3 exchange document for mutation tests."""
+    return json.loads(EXCHANGE_V03_INPUT.read_text(encoding="utf-8"))
+
+
+def load_exchange_v03_schema() -> dict:
+    return json.loads(EXCHANGE_V03_SCHEMA.read_text(encoding="utf-8"))

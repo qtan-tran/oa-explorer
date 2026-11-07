@@ -3,6 +3,37 @@
 All notable changes to this repository. Format: Keep a Changelog; versioning:
 the repository follows the plan's milestones, contract semver is separate.
 
+## [0.4.0] - 2026-11-08
+### Added (v0.3 exchange-contract draft: six corpus decisions, synthetic only)
+- Draft exchange contract v0.3 (`contract/exchange/roara_contract_v0.3.schema.json`,
+  `0.3-draft`, attached verbatim from the owner's review; not ratified;
+  v0.2 schema retained for migration reference).
+- `pipeline/exchange_v03_lib.py` (+ CLI): reuses the v0.2 shape validator and
+  enforces the six owner-reviewed decisions — score observations separate
+  from provisions with no hardcoded labels and no composite (always
+  withheld publicly until the ten-score codebook arrives); issuer
+  `source_url` vs corroborated `archived_url`/`archive_snapshots`; typed
+  cohort `event_type` triggers whose bounds never infer an effective
+  date; `retrieved_at` as the only retrieval event (legacy
+  `dateClaim.type=retrieved` rejected); explicit `duplicate_of_manifestation_id`
+  aliases only on matching bytes/same version, counting one underlying
+  manifestation; mandatory provision `cohort_applicability_status` +
+  `cohort_ids` with `unknown` never displayed as "all cohorts".
+- `synthetic/exchange_v03.json`: synthetic v0.3 fixture with
+  `public_release_approved: false` (all public gates closed), incl. the
+  Colombia Resolution 0777 structural regression case (signed 2022-08-03,
+  Art. 3 effective on publication, gazette issue 52.243 of 2022-12-09,
+  mirror + pending official host, resolution and annex as one version)
+  and the UCT 2014-label/amended-2014-2016/2020 genealogy case (no clean
+  2014 baseline or effective date inferred). No original files or
+  excerpts imported.
+- Tests 24–27 (52 cases): shape mutations, the six decisions, both
+  regression cases, closed public gates, CLI. Suite total 203, all
+  passing.
+- `docs/plans/2026-11-08-exchange-v0.3-slice.md`: implementation report,
+  v0.2→v0.3 migration table, resolution of v0.2 open questions Q1/Q3/Q5/Q6/
+  Q8/Q9/Q14, unresolved fields; Q2/Q4/Q7/Q10–Q13/Q15 remain open.
+
 ## [0.3.0] - 2026-11-08
 ### Added (v0.2 exchange-contract vertical slice, synthetic data only)
 - Draft exchange contract v0.2 (`contract/exchange/roara_contract_v0.2.schema.json`,

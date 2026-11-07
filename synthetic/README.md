@@ -43,3 +43,27 @@ Every file in this directory is **entirely fictional demonstration data**.
 - Do not import this file as if it were a corpus release; it exists to
   exercise `pipeline/exchange_lib.py` and `site/build_exchange.py`
   before any real data passes through them.
+
+## Exchange fixture (Session 4, v0.3 draft)
+
+- `exchange_v03.json` is the **synthetic demonstration exchange document**
+  for the draft v0.3 contract (`schema_version: 0.3-draft`): 4 versions,
+  7 manifestations (6 underlying after one duplicate-byte alias),
+  2 provisions, 2 relationships, 1 placeholder score definition and
+  3 score observations. `public_release_approved` is **false** — all
+  public download/excerpt/score gates are closed.
+- It adds two named **regression scenarios** that model the *structure*
+  of real cases without importing any original file, excerpt or URL
+  path: a Colombian Resolution 0777 (2022) model (signed 2022-08-03,
+  Article 3 effective on publication, gazette facsimile issue 52.243 of
+  2022-12-09, mirror provenance with official-host corroboration pending,
+  resolution and annex as one version) and a UCT repository-policy
+  genealogy model (2014 label pointing to amended 2014/2016 text, then a
+  2020 revision; no clean 2014 baseline or effective date inferable).
+  All excerpts are `[SYNTHETIC PLACEHOLDER …]` strings.
+- Score dimensions use a single placeholder (`SD-SYNTH-DIM-01`); the
+  authoritative ten-score codebook has not been supplied, so no labels
+  are hardcoded and no composite is computed.
+- Do not import this file as if it were a corpus release; it exists to
+  exercise `pipeline/exchange_v03_lib.py` before any real data passes
+  through it.
